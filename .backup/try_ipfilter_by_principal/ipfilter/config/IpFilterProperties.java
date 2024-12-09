@@ -30,7 +30,7 @@ import lombok.ToString;
 /**
  * {@link IpFilterProperties}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2022-05-05 v1.0.0
  * @since v1.0.0
  */
@@ -40,7 +40,7 @@ import lombok.ToString;
 @ToString
 public class IpFilterProperties {
 
-    private String configPrefix = GatewayIAMConstants.CACHE_PREFIX_ESCG_IPFILTER_CONF;
+    private String configPrefix = GatewayIAMConstants.CACHE_PREFIX_IPFILTER_CONF;
 
     private DefaultFilterProperties defaultFilter = new DefaultFilterProperties();
 

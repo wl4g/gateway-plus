@@ -281,7 +281,7 @@
                     ]
                 },
                 {
-                    "type": "IamRequestSize",
+                    "type": "PlusRequestSize",
                     "repeat": "false",
                     "help": "",
                     "args": [
@@ -296,7 +296,7 @@
                     ]
                 },
                 {
-                    "type": "IamRequestLimiter",
+                    "type": "PlusRequestLimiter",
                     "repeat": "true",
                     "help": "",
                     "args": [
@@ -393,7 +393,7 @@
                     ]
                 },
                 {
-                    "type": "IamCircuitBreaker",
+                    "type": "PlusCircuitBreaker",
                     "repeat": "false",
                     "help": "",
                     "args": [
@@ -489,7 +489,7 @@
                     ]
                 },
                 {
-                    "type": "IamRetry",
+                    "type": "PlusRetry",
                     "repeat": "false",
                     "help": "",
                     "args": [
@@ -1193,7 +1193,7 @@
                                     "type": "string",
                                     "multi": "false",
                                     "repeat": "false",
-                                    "defaultValue": "iam:gateway:responsecache:data",
+                                    "defaultValue": "gateway:plus:responsecache:data",
                                     "help": ""
                                 },
                                 {

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.wl4g.escg.requestlimit;
+package com.wl4g.gateway.requestlimit;
 
 import static java.lang.String.format;
 
@@ -27,7 +27,7 @@ import com.wl4g.infra.common.lang.FastTimeClock;
 /**
  * {@link TestsLimiterController}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2021-10-12 v1.0.0
  * @since v1.0.0
  */

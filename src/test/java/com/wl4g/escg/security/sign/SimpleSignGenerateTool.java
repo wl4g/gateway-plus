@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.wl4g.escg.security.sign;
+package com.wl4g.gateway.security.sign;
 
 import static java.lang.String.format;
 import static java.lang.System.currentTimeMillis;
@@ -120,7 +120,7 @@ public class SimpleSignGenerateTool {
     public static void main(String[] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         if (args.length == 1 && args[0].endsWith("help")) {
             System.out.println(
-                    "Usage: java -jar iam-gateway-{version}.jar <myAppId> <myAppSecret> <hashingAlg, e.g: MD5|SHA-256|SHA-384|..>");
+                    "Usage: java -jar gateway-plus-{version}.jar <myAppId> <myAppSecret> <hashingAlg, e.g: MD5|SHA-256|SHA-384|..>");
             System.exit(0);
         }
 

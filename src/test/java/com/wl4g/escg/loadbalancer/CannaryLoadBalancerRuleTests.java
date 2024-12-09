@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.wl4g.escg.loadbalancer;
+package com.wl4g.gateway.loadbalancer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,15 +25,15 @@ import org.springframework.cloud.client.DefaultServiceInstance;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.web.server.ServerWebExchange;
 
-import com.wl4g.escg.loadbalance.CanaryLoadBalancerFilterFactory;
-import com.wl4g.escg.loadbalance.chooser.AbstractCanaryLoadBalancerChooser;
-import com.wl4g.escg.loadbalance.config.CanaryLoadBalancerProperties;
-import com.wl4g.escg.loadbalance.stats.LoadBalancerStats;
+import com.wl4g.gateway.loadbalance.CanaryLoadBalancerFilterFactory;
+import com.wl4g.gateway.loadbalance.chooser.AbstractCanaryLoadBalancerChooser;
+import com.wl4g.gateway.loadbalance.config.CanaryLoadBalancerProperties;
+import com.wl4g.gateway.loadbalance.stats.LoadBalancerStats;
 
 /**
  * {@link CannaryLoadBalancerRuleTests}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2022-04-13 v1.0.0
  * @since v1.0.0
  */

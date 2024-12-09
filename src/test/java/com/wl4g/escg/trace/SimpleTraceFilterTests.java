@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.wl4g.escg.trace;
+package com.wl4g.gateway.trace;
 
 
 import org.junit.Test;
@@ -21,7 +21,7 @@ import org.junit.Test;
 /**
  * {@link SimpleTraceFilterTests}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2022-04-09 v1.0.0
  * @since v1.0.0
  */

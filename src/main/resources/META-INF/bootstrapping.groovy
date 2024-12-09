@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2017 ~ 2025 the original author or authors.
- * <Wanglsir@gmail.com, 983708408@qq.com> Technology CO.LTD.
+ * <Wanglsir@gmail.com> Technology CO.LTD.
  * All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,9 +28,9 @@ import com.wl4g.infra.common.runtime.JvmRuntimeTool
 import com.wl4g.infra.context.boot.listener.IBootstrappingConfigurer
 
 /**
- * IAM Gateway implementation of {@link IBootstrappingConfigurer}
+ * Gateway Plus implementation of {@link IBootstrappingConfigurer}
  */
-class IamGatewayBootstrappingConfigurer implements IBootstrappingConfigurer {
+class GatewayPlusBootstrappingConfigurer implements IBootstrappingConfigurer {
 
     @Override
     def int getOrder() {
@@ -40,20 +40,20 @@ class IamGatewayBootstrappingConfigurer implements IBootstrappingConfigurer {
     @Override
     void defaultProperties(Properties prevDefaultProperties) {
         // Preset spring.config.name
-        def configName = new StringBuffer("bootstrap,application,escg")
+        def configName = new StringBuffer("bootstrap,application,gateway")
 
         // Preset spring.config.additional-location
         def additionalLocation = new StringBuffer()
 
         // When running in JVM debug mode, the example configuration directory is automatically included.
-        if (JvmRuntimeTool.isJvmInDebugging) {
+        if (isJvmInDebugging) {
             configName.append(",example");
             additionalLocation.append(",optional:classpath:/example/")
         }
 
-        // for example: spring auto load for 'classpath:/escg-nacos-dev.yml'
+        // for example: spring auto load for 'classpath:/gateway-nacos-dev.yml'
         if (isPresent("com.alibaba.cloud.nacos.NacosConfigAutoConfiguration")) {
-            configName.append(",escg-nacos");
+            configName.append(",gateway-nacos");
             //additionalLocation.append(",classpath:/nacos/")
         }
 

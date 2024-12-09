@@ -1,5 +1,5 @@
 # Copyright (c) 2017 ~ 2025, the original author wangl.sir individual Inc,
-# All rights reserved. Contact us <Wanglsir@gmail.com, 983708408@qq.com>
+# All rights reserved. Contact us <Wanglsir@gmail.com>
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -8,7 +8,7 @@
 # limitations under the License.
 #
 #
-# #### IAM Gateway Example routes-filter configuration. ####
+# #### Gateway Plus Example routes-filter configuration. ####
 #
 spring:
   cloud:
@@ -70,13 +70,13 @@ spring:
                     cidrs: ['1.1.1.0/24'] ## Default by []
         ##
         ## ------------------------------------------------------
-        ## Routing configuration for testing filter IamRequestSize
+        ## Routing configuration for testing filter PlusRequestSize
         ## ------------------------------------------------------
         ##
-        - id: productpage-service-route-with-IamRequestSize
+        - id: productpage-service-route-with-PlusRequestSize
           uri: lb://productpage-service
           predicates:
-            - Path=/productpage-with-IamRequestSize/**
+            - Path=/productpage-with-PlusRequestSize/**
             ## Note: Use the built-in 'WeightCalculatorWebFilter' to implement canary publishing. This should not be the most elegant 
             ## choice. For example, in some scenarios, the client request URL will not change, so it is impossible to implement
             ## canary traffic based on this router. Instead, Escg's dedicated 'CanaryLoadBalancerFilter' should be used, 
@@ -85,9 +85,9 @@ spring:
             #- Weight=v1-productpage-service,5
           filters:
             ## see: org.springframework.cloud.gateway.filter.factory.RewritePathGatewayFilterFactory#apply
-            - RewritePath=/productpage-with-IamRequestSize/(?<segment>.*),/$\{segment}
+            - RewritePath=/productpage-with-PlusRequestSize/(?<segment>.*),/$\{segment}
             ## Limit for request content-length
-            - name: IamRequestSize
+            - name: PlusRequestSize
               args:
                 max-body-size: 5MB ## Default by 5MB
         ##
@@ -165,17 +165,17 @@ spring:
                 sign-algorithm: S256 ## Default by 'S256', Options(MD5|S1|S256|S384|S512|HMD5|HS1|HS256|HS512)
                 sign-hashing-mode: SimpleParamsBytesSortedHashing ## Default by 'UriParamsKeySortedHashing'
                 sign-hashing-include-params: ['*'] ## Default by []
-                sign-hashing-exclude-params: ['response_type','__iscg_log'] ## Default by []
+                sign-hashing-exclude-params: ['response_type','__gw_log'] ## Default by []
                 add-sign-auth-client-id-header: X-Sign-Auth-AppId ## Default by 'X-Sign-Auth-AppId'
         ##
         ## ------------------------------------------------------
-        ## Routing configuration for testing filter IamRequestLimiter
+        ## Routing configuration for testing filter PlusRequestLimiter
         ## ------------------------------------------------------
         ##
-        - id: productpage-service-route-with-IamRequestLimiter
+        - id: productpage-service-route-with-PlusRequestLimiter
           uri: lb://productpage-service
           predicates:
-            - Path=/productpage-with-IamRequestLimiter/**
+            - Path=/productpage-with-PlusRequestLimiter/**
             ## Note: Use the built-in 'WeightCalculatorWebFilter' to implement canary publishing. This should not be the most elegant 
             ## choice. For example, in some scenarios, the client request URL will not change, so it is impossible to implement
             ## canary traffic based on this router. Instead, Escg's dedicated 'CanaryLoadBalancerFilter' should be used, 
@@ -184,8 +184,8 @@ spring:
             #- Weight=v1-productpage-service,5
           filters:
             ## see: org.springframework.cloud.gateway.filter.factory.RewritePathGatewayFilterFactory#apply
-            - RewritePath=/productpage-with-IamRequestLimiter/(?<segment>.*),/$\{segment}
-            - name: IamRequestLimiter
+            - RewritePath=/productpage-with-PlusRequestLimiter/(?<segment>.*),/$\{segment}
+            - name: PlusRequestLimiter
               args:
                 #denyEmptyKey: true ## Default are set(recommended)
                 #emptyKeyStatus: FORBIDDEN ## Default are set(recommended)
@@ -198,7 +198,7 @@ spring:
                     ## Note: Be sure to enclose the entire array string in double quotes (to be processed as list<string>),
                     ## otherwise it will be processed as map<string,string>
                     headerNames: "['X-Forwarded-For','Proxy-Client-IP','WL-Proxy-Client-IP']"
-            - name: IamRequestLimiter
+            - name: PlusRequestLimiter
               args:
                 #denyEmptyKey: true ## Default are set(recommended)
                 #emptyKeyStatus: FORBIDDEN ## Default are set(recommended)
@@ -208,7 +208,7 @@ spring:
                 keyResolver:
                   provider: Path ## Default by Host, options are: Host|Path|Principal|Header|Interval
                   properties: {}
-            #- name: IamRequestLimiter
+            #- name: PlusRequestLimiter
             #  args:
             #    #denyEmptyKey: true ## Default are set(recommended)
             #    #emptyKeyStatus: FORBIDDEN ## Default are set(recommended)
@@ -218,7 +218,7 @@ spring:
             #    keyResolver:
             #      provider: Principal ## Default by Host, options are: Host|Path|Principal|Header|Interval
             #      properties: {}
-            #- name: IamRequestLimiter
+            #- name: PlusRequestLimiter
             #  args:
             #    #denyEmptyKey: true ## Default are set(recommended)
             #    #emptyKeyStatus: FORBIDDEN ## Default are set(recommended)
@@ -333,13 +333,13 @@ spring:
                   expireMs: 60_000
         ##
         ## ------------------------------------------------------
-        ## Routing configuration for testing filter IamRetry
+        ## Routing configuration for testing filter PlusRetry
         ## ------------------------------------------------------
         ##
-        - id: productpage-service-route-with-IamRetry
+        - id: productpage-service-route-with-PlusRetry
           uri: lb://productpage-service
           predicates:
-            - Path=/productpage-with-IamRetry/**
+            - Path=/productpage-with-PlusRetry/**
             ## Note: Use the built-in 'WeightCalculatorWebFilter' to implement canary publishing. This should not be the most elegant 
             ## choice. For example, in some scenarios, the client request URL will not change, so it is impossible to implement
             ## canary traffic based on this router. Instead, Escg's dedicated 'CanaryLoadBalancerFilter' should be used, 
@@ -348,8 +348,8 @@ spring:
             #- Weight=v1-productpage-service,5
           filters:
             ## see: org.springframework.cloud.gateway.filter.factory.RewritePathGatewayFilterFactory#apply
-            - RewritePath=/productpage-with-IamRetry/(?<segment>.*),/$\{segment}
-            - name: IamRetry
+            - RewritePath=/productpage-with-PlusRetry/(?<segment>.*),/$\{segment}
+            - name: PlusRetry
               args:
                 retries: 3
                 statuses: [BAD_GATEWAY,SERVICE_UNAVAILABLE,GATEWAY_TIMEOUT]
@@ -361,13 +361,13 @@ spring:
                   based-on-previous-value: false
         ##
         ## ------------------------------------------------------
-        ## Routing configuration for testing filter IamCircuitBreaker
+        ## Routing configuration for testing filter PlusCircuitBreaker
         ## ------------------------------------------------------
         ##
-        - id: productpage-service-route-with-IamCircuitBreaker
+        - id: productpage-service-route-with-PlusCircuitBreaker
           uri: lb://productpage-service
           predicates:
-            - Path=/productpage-with-IamCircuitBreaker/**
+            - Path=/productpage-with-PlusCircuitBreaker/**
             ## Note: Use the built-in 'WeightCalculatorWebFilter' to implement canary publishing. This should not be the most elegant 
             ## choice. For example, in some scenarios, the client request URL will not change, so it is impossible to implement
             ## canary traffic based on this router. Instead, Escg's dedicated 'CanaryLoadBalancerFilter' should be used, 
@@ -376,13 +376,13 @@ spring:
             #- Weight=v1-productpage-service,5
           filters:
             ## see: org.springframework.cloud.gateway.filter.factory.RewritePathGatewayFilterFactory#apply
-            - RewritePath=/productpage-with-IamCircuitBreaker/(?<segment>.*),/$\{segment}
+            - RewritePath=/productpage-with-PlusCircuitBreaker/(?<segment>.*),/$\{segment}
             ## see:com.wl4g.iam.gateway.circuitbreaker.IamReactiveResilience4JCircuitBreaker
             ## see:org.springframework.cloud.circuitbreaker.resilience4j.ReactiveResilience4JCircuitBreaker
             ## see:org.springframework.cloud.gateway.filter.factory.SpringCloudCircuitBreakerFilterFactory
             ## see:https://cloud.spring.io/spring-cloud-circuitbreaker/reference/html/spring-cloud-circuitbreaker.html
             ## see:https://github.com/spring-cloud/spring-cloud-gateway/issues/1370
-            - name: IamCircuitBreaker
+            - name: PlusCircuitBreaker
               args:
                 name: productpage-service-circuitbreaker
                 fallback-uri: forward:/_fallback

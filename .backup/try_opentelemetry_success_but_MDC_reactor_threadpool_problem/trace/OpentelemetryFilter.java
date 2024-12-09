@@ -60,7 +60,7 @@ import reactor.core.publisher.Mono;
  * by {@link org.springframework.cloud.gateway.filter.GlobalFilter},
  * {@link org.springframework.cloud.gateway.filter.GatewayFilter}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2021-09-02 v1.0.0
  * @since v1.0.0
  * @see {@link org.springframework.cloud.sleuth.instrument.web.TraceWebFilter}

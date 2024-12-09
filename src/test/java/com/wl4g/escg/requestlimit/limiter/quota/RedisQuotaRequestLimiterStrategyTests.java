@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.wl4g.escg.requestlimit.limiter.quota;
+package com.wl4g.gateway.requestlimit.limiter.quota;
 
 import static com.wl4g.infra.common.serialize.JacksonUtils.parseJSON;
 import static com.wl4g.infra.common.serialize.JacksonUtils.toJSONString;
@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 /**
  * {@link RedisQuotaRequestLimiterStrategyTests}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2022-05-17 v1.0.0
  * @since v1.0.0
  */

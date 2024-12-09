@@ -61,7 +61,7 @@ import reactor.core.publisher.SignalType;
  * so that other back-end servers can be selected when retrying. see to:
  * {@link org.springframework.cloud.gateway.handler.FilteringWebHandler.DefaultGatewayFilterChain#filter(ServerWebExchange)}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2022-04-03 v1.0.0
  * @since v1.0.0
  */

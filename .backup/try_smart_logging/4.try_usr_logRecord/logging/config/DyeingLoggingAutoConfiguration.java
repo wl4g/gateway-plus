@@ -15,7 +15,7 @@
  */
 package com.wl4g.iam.gateway.logging.config;
 
-import static com.wl4g.iam.common.constant.GatewayIAMConstants.CONF_PREFIX_ESCG_LOGGING;
+import static com.wl4g.iam.common.constant.GatewayIAMConstants.CONF_PREFIX_LOGGING;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -26,14 +26,14 @@ import com.wl4g.iam.gateway.logging.ResponseLoggingGlobalFilter;
 /**
  * {@link DyeingLoggingAutoConfiguration}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2021-09-03 v1.0.0
  * @since v1.0.0
  */
 public class DyeingLoggingAutoConfiguration {
 
     @Bean
-    @ConfigurationProperties(prefix = CONF_PREFIX_ESCG_LOGGING)
+    @ConfigurationProperties(prefix = CONF_PREFIX_LOGGING)
     public DyeingLoggingProperties dyeingLoggingProperties() {
         return new DyeingLoggingProperties();
     }

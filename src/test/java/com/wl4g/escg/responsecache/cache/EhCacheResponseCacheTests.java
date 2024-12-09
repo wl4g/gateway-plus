@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.wl4g.escg.responsecache.cache;
+package com.wl4g.gateway.responsecache.cache;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 import org.junit.Test;
 
-import com.wl4g.escg.responsecache.config.ResponseCacheProperties.EhCacheProperties;
+import com.wl4g.gateway.responsecache.config.ResponseCacheProperties.EhCacheProperties;
 
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
@@ -28,7 +28,7 @@ import reactor.test.StepVerifier;
 /**
  * {@link EhCacheResponseCacheTests}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2022-05-14 v1.0.0
  * @since v1.0.0
  */

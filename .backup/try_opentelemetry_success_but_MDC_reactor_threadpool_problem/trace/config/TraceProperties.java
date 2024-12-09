@@ -37,7 +37,7 @@ import lombok.ToString;
 /**
  * {@link DyeingLoggingProperties}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2021-09-02 v1.0.0
  * @since v1.0.0
  */
@@ -63,7 +63,7 @@ public class TraceProperties {
      */
     private List<MatchHttpRequestRule> preferMatchRuleDefinitions = new ArrayList<>();
 
-    @Value("${spring.application.name:iam-gateway}")
+    @Value("${spring.application.name:gateway-plus}")
     private @NotBlank String serviceName;
 
     private ExporterProperties exporter = new ExporterProperties();

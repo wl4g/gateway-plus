@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.wl4g.escg.circuitbreaker;
+package com.wl4g.gateway.circuitbreaker;
 
 import static java.lang.System.out;
 
@@ -32,7 +32,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 /**
  * {@link CircuitbreakerTests}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2022-04-05 v1.0.0
  * @since v1.0.0
  */

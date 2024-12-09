@@ -71,7 +71,7 @@ import reactor.core.publisher.Mono;
 /**
  * {@link LoggingGlobalFilter}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2022-04-02 v1.0.0
  * @since v1.0.0
  */
@@ -561,12 +561,12 @@ public class LoggingFilter implements GlobalFilter, Ordered {
         }
     });
 
-    public static final String LOG_REQUEST_BEGIN = "\n---------- <IAM Gateway Request Log Begin> ------------\n::: Headers :::\n";
+    public static final String LOG_REQUEST_BEGIN = "\n---------- <Gateway Plus Request Log Begin> ------------\n::: Headers :::\n";
     public static final String LOG_REQUEST_BODY = "::: Body :::\n{}";
-    public static final String LOG_REQUEST_END = "\n---------- <IAM Gateway Request Log End> -------------\n";
-    public static final String LOG_RESPONSE_BEGIN = "\n---------- <IAM Gateway Response Log Begin> ----------\n::: Headers :::\n";
+    public static final String LOG_REQUEST_END = "\n---------- <Gateway Plus Request Log End> -------------\n";
+    public static final String LOG_RESPONSE_BEGIN = "\n---------- <Gateway Plus Response Log Begin> ----------\n::: Headers :::\n";
     public static final String LOG_RESPONSE_BODY = "::: Body :::\n{}";
-    public static final String LOG_RESPONSE_END = "\n---------- <IAM Gateway Response Log End> ------------\n";
+    public static final String LOG_RESPONSE_END = "\n---------- <Gateway Plus Response Log End> ------------\n";
     public static final String KEY_START_TIME = LoggingFilter.class.getName() + ".startTime";
     public static final int ORDER_FILTER = Ordered.HIGHEST_PRECEDENCE + 20;
 }

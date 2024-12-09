@@ -1,4 +1,4 @@
-# ESCG (Enhanced Spring Cloud Gateway)
+# Spring Cloud Gateway Plus
 
 A enterprise-level enhanced gateway based on spring cloud gateway, out of the box, supports such as canary request-based response cache filter, canary load balancer, universal signature authentication filter, oidc v1/oauth2.x authentication filter, ip filter, Traffic replication filter, quota-request limiter-based filter Injector, canary-based fault injector filter, and canary-based humanized log filter, etc.
 
@@ -9,7 +9,7 @@ Tips: The latest version and documentation are currently being sorted out. It is
 - Building
 
 ```bash
-git clone https://github.com/wl4g/escg.git
+git clone https://github.com/wl4g/gateway-plus.git
 cd escg/
 
 # The profiles supports: -Pbuild:tar, -Pbuild:springjar, -Pbuild:docker, -Pbuild:native
@@ -43,7 +43,7 @@ Using the above script tool will contain `localhost,127.0.0.1` by default.
   - [docs.oracle.com/javase/7/docs/technotes/guides/security/jsse/ReadDebug.html](https://docs.oracle.com/javase/7/docs/technotes/guides/security/jsse/ReadDebug.html) , The `-Djavax.net.debug` options are `all|ssl|handshake|warning|...`
 
 ```bash
-java -Djavax.net.debug=all -jar escg-1.0.0-bin.jar --server.ssl.enabled=true --server.ssl.client-auth=NONE
+java -Djavax.net.debug=all -jar gateway-plus-1.0.0-bin.jar --server.ssl.enabled=true --server.ssl.client-auth=NONE
 ```
 
 - Clients for `curl` testing
@@ -64,7 +64,7 @@ curl -vsSkL -XGET \
 - Preconditions (startup configuration)
 
 ```bash
-java -Djavax.net.debug=all -jar escg-1.0.0-bin.jar --server.ssl.enabled=true --server.ssl.client-auth=NEED
+java -Djavax.net.debug=all -jar gateway-plus-1.0.0-bin.jar --server.ssl.enabled=true --server.ssl.client-auth=NEED
 ```
 
 - Clients for `curl` testing
@@ -164,14 +164,14 @@ filters:
       sign-algorithm: S256
       sign-hashing-mode: SimpleParamsBytesSortedHashing
       sign-hashing-include-params: ['*']
-      sign-hashing-exclude-params: ['response_type','__iscg_log']
+      sign-hashing-exclude-params: ['response_type','__gw_log']
       add-sign-auth-client-id-header: X-Sign-Auth-AppId
 ...
 ```
 
 - Preconditions2 (generate mock sign request)
 
-Run the test harness class in Idea/Eclipse/VsCode: `com.wl4g.escg.security.sign.SimpleSignGenerateTool` to generate test request parameters.
+Run the test harness class in Idea/Eclipse/VsCode: `com.wl4g.gateway.security.sign.SimpleSignGenerateTool` to generate test request parameters.
 
 - Preconditions3 (setup secret to redis example)
 
@@ -264,7 +264,7 @@ ab -n 2000 -c 15 \
 -H 'X-Escg-Log: y' \
 -H 'X-Escg-Log-Level: 10' \
 -m POST \
-'http://localhost:18085/productpage-with-IamRequestLimiter/post?response_type=json'
+'http://localhost:18085/productpage-with-PlusRequestLimiter/post?response_type=json'
 ```
 
 - 2.8.2 Debug limited headers
@@ -278,7 +278,7 @@ curl -vsSkL -XPOST \
 -H 'X-Escg-Log: y' \
 -H 'X-Escg-Log-Level: 10' \
 -X POST \
-'http://localhost:18085/productpage-with-IamRequestLimiter/post?response_type=json'
+'http://localhost:18085/productpage-with-PlusRequestLimiter/post?response_type=json'
 
 HTTP/1.1 200 OK
 X-Request-Id: 643603ccd11aadf5a705191e5c11b2a4
@@ -289,7 +289,7 @@ X-Escg-RateLimit-Burst-Capacity: 200
 X-Escg-RateLimit-Remaining: 199
 X-Escg-QuotaLimit-Remaining: 474
 X-Escg-QuotaLimit-Cycle: 220518
-X-Escg-QuotaLimit-LimitKey: /productpage-with-IamRequestLimiter/post
+X-Escg-QuotaLimit-LimitKey: /productpage-with-PlusRequestLimiter/post
 X-Escg-QuotaLimit-Request-Capacity: 1000
 ...
 ...
@@ -298,7 +298,7 @@ X-Escg-QuotaLimit-Request-Capacity: 1000
 - 2.8.3 Configure for global default.
 
 ```bash
-java -jar escg-1.0.0-bin.jar \
+java -jar gateway-plus-1.0.0-bin.jar \
 --spring.escg.requestlimit.limiter.rate.defaultStrategy.defaultBurstCapacity=1000 \
 --spring.escg.requestlimit.limiter.rate.defaultStrategy.defaultReplenishRate=10 \
 --spring.escg.requestlimit.limiter.rate.defaultStrategy.defaultRequestedTokens=1 \
@@ -312,19 +312,19 @@ java -jar escg-1.0.0-bin.jar \
 ## The cache key format example is:'escg:requestlimit:config:rate:<routeId>:<limitKey>', of course, both prefixes and suffixes can be configured globally.
 
 ## The keyResolver is Header(X-Forward-Ip)
-hset escg:requestlimit:config:rate productpage-service-route-with-IamRequestLimiter:127.0.0.1 '{"includeHeaders":true,"burstCapacity":1000,"replenishRate":1,"requestedTokens":1}'
+hset escg:requestlimit:config:rate productpage-service-route-with-PlusRequestLimiter:127.0.0.1 '{"includeHeaders":true,"burstCapacity":1000,"replenishRate":1,"requestedTokens":1}'
 
-hset escg:requestlimit:config:quota  productpage-service-route-with-IamRequestLimiter:127.0.0.1 '{"requestCapacity":1000,"cycleDatePattern":"yyMMddHH","includeHeaders":true}'
+hset escg:requestlimit:config:quota  productpage-service-route-with-PlusRequestLimiter:127.0.0.1 '{"requestCapacity":1000,"cycleDatePattern":"yyMMddHH","includeHeaders":true}'
 
 ## The keyResolver is Path
-hset escg:requestlimit:config:rate productpage-service-route-with-IamRequestLimiter:/productpage-with-IamRequestLimiter/get  '{"includeHeaders":true,"burstCapacity":1000,"replenishRate":1,"requestedTokens":1}'
+hset escg:requestlimit:config:rate productpage-service-route-with-PlusRequestLimiter:/productpage-with-PlusRequestLimiter/get  '{"includeHeaders":true,"burstCapacity":1000,"replenishRate":1,"requestedTokens":1}'
 
-hset escg:requestlimit:config:quota  productpage-service-route-with-IamRequestLimiter:/productpage-with-IamRequestLimiter/get  '{"requestCapacity":1000,"cycleDatePattern":"yyMMddHH","includeHeaders":true}'
+hset escg:requestlimit:config:quota  productpage-service-route-with-PlusRequestLimiter:/productpage-with-PlusRequestLimiter/get  '{"requestCapacity":1000,"cycleDatePattern":"yyMMddHH","includeHeaders":true}'
 
 ## The keyResolver is Principal(appId)
-hset escg:requestlimit:config:rate productpage-service-route-with-IamRequestLimiter:oijvin6crxu2qdqvpgls9jmijz4t6istxs '{"includeHeaders":true,"burstCapacity":1000,"replenishRate":1,"requestedTokens":1}'
+hset escg:requestlimit:config:rate productpage-service-route-with-PlusRequestLimiter:oijvin6crxu2qdqvpgls9jmijz4t6istxs '{"includeHeaders":true,"burstCapacity":1000,"replenishRate":1,"requestedTokens":1}'
 
-hset escg:requestlimit:config:quota productpage-service-route-with-IamRequestLimiter:oijvin6crxu2qdqvpgls9jmijz4t6istxs '{"requestCapacity":1000,"cycleDatePattern":"yyMMddHH","includeHeaders":true}'
+hset escg:requestlimit:config:quota productpage-service-route-with-PlusRequestLimiter:oijvin6crxu2qdqvpgls9jmijz4t6istxs '{"requestCapacity":1000,"cycleDatePattern":"yyMMddHH","includeHeaders":true}'
 
 ## ...
 ```
@@ -334,15 +334,15 @@ hset escg:requestlimit:config:quota productpage-service-route-with-IamRequestLim
 ```bash
 ## The cache key format example is:'escg:requestlimit:token:quota:<yyMMdd>  <routeId>:<limitKey>', of course, both prefixes and suffixes can be configured globally.
 hgetall escg:requestlimit:token:quota:220517
-hget escg:requestlimit:token:quota:220517 productpage-service-route-with-IamRequestLimiter:127.0.0.1
+hget escg:requestlimit:token:quota:220517 productpage-service-route-with-PlusRequestLimiter:127.0.0.1
 ```
 
 - 2.8.6 View limited Events
 
 ```bash
 ## The cache key format example is:'escg:requestlimit:event:hits:rate:<routeId>:<yyMMdd>', of course, both prefixes and suffixes can be configured globally.
-hgetall escg:requestlimit:event:hits:rate:productpage-service-route-with-IamRequestLimiter:220517
-hgetall escg:requestlimit:event:hits:quota:productpage-service-route-with-IamRequestLimiter:220517
+hgetall escg:requestlimit:event:hits:rate:productpage-service-route-with-PlusRequestLimiter:220517
+hgetall escg:requestlimit:event:hits:quota:productpage-service-route-with-PlusRequestLimiter:220517
 ```
 
 ### 2.9 Traffic Replication
@@ -359,7 +359,7 @@ spring:
 ## Mock actual upstream http server.
 python3 -m http.server -b 0.0.0.0 8888
 
-## Mock traffic mirror upstream http server. see: escg-route.yaml#secure-httpbin-service-route
+## Mock traffic mirror upstream http server. see: gateway-plus-route.yaml#secure-httpbin-service-route
 ## Online by default: http://httpbin.org/
 ## [Optional] You can also use docker to local build an httpbin server.
 #docker run -d --name=httpbin -p 8889:80 kennethreitz/httpbin
@@ -462,12 +462,12 @@ ab -n 10000 -c 1000 \
 -H 'X-Escg-Fault: y' \
 -H 'X-Escg-Canary: v1' \
 -m POST \
-'http://localhost:18085/productpage-with-IamRequestLimiter/post?&response_type=json'
+'http://localhost:18085/productpage-with-PlusRequestLimiter/post?&response_type=json'
 ```
 
 ## 5. FAQ
 
-### 5.1 When the request limiter is configured, and then the log level is set to `com.wl4g.escg.requestlimit=TRACE`, an error will be displayed: `ERR Error running ... @user_script:1: user_script:1: attempt to call field 'replicate_commands' (a nil value)`
+### 5.1 When the request limiter is configured, and then the log level is set to `com.wl4g.gateway.requestlimit=TRACE`, an error will be displayed: `ERR Error running ... @user_script:1: user_script:1: attempt to call field 'replicate_commands' (a nil value)`
 
 - Refer1: [stackoverflow attempt-to-call-field-replicate-commands-a-nil-value](https://stackoverflow.com/questions/59809151/attempt-to-call-field-replicate-commands-a-nil-value)
 

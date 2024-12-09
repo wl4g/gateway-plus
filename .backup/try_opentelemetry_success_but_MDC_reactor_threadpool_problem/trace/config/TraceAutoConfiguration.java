@@ -15,7 +15,7 @@
  */
 package com.wl4g.iam.gateway.trace.config;
 
-import static com.wl4g.iam.common.constant.GatewayIAMConstants.CONF_PREFIX_ESCG_TRACE;
+import static com.wl4g.iam.common.constant.GatewayIAMConstants.CONF_PREFIX_TRACE;
 import static com.wl4g.infra.common.collection.CollectionUtils2.safeMap;
 import static java.lang.String.format;
 
@@ -51,14 +51,14 @@ import io.opentelemetry.semconv.resource.attributes.ResourceAttributes;
 /**
  * {@link TraceAutoConfiguration}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2021-09-02 v1.0.0
  * @since v1.0.0
  */
 public class TraceAutoConfiguration {
 
     @Bean
-    @ConfigurationProperties(prefix = CONF_PREFIX_ESCG_TRACE)
+    @ConfigurationProperties(prefix = CONF_PREFIX_TRACE)
     public TraceProperties traceProperties() {
         return new TraceProperties();
     }
@@ -210,11 +210,11 @@ public class TraceAutoConfiguration {
     public static final String ZIPKIN_EXPORTER = "zipkin";
     public static final String DEFAULT_EXPORTER = JAEGER_EXPORTER;
 
-    public static final String ON_OTLP_EXPRESSION = "'" + OTLP_EXPORTER + "'.equalsIgnoreCase('${" + CONF_PREFIX_ESCG_TRACE
+    public static final String ON_OTLP_EXPRESSION = "'" + OTLP_EXPORTER + "'.equalsIgnoreCase('${" + CONF_PREFIX_TRACE
             + ".provider:" + DEFAULT_EXPORTER + "}')";
     public static final String ON_JAEGER_EXPRESSION = "'" + JAEGER_EXPORTER + "'.equalsIgnoreCase('${"
-            + CONF_PREFIX_ESCG_TRACE + ".provider:" + DEFAULT_EXPORTER + "}')";
+            + CONF_PREFIX_TRACE + ".provider:" + DEFAULT_EXPORTER + "}')";
     public static final String ON_ZIPKIN_EXPRESSION = "'" + ZIPKIN_EXPORTER + "'.equalsIgnoreCase('${"
-            + CONF_PREFIX_ESCG_TRACE + ".provider:" + DEFAULT_EXPORTER + "}')";
+            + CONF_PREFIX_TRACE + ".provider:" + DEFAULT_EXPORTER + "}')";
 
 }

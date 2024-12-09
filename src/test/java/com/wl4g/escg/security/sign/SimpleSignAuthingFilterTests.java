@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.wl4g.escg.security.sign;
+package com.wl4g.gateway.security.sign;
 
 import static java.lang.String.format;
 import static java.lang.System.currentTimeMillis;
@@ -37,15 +37,15 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import com.wl4g.escg.metrics.IamGatewayMetricsFacade;
-import com.wl4g.escg.security.config.IamSecurityProperties;
-import com.wl4g.escg.security.sign.SimpleSignAuthingFilterFactory.SignHashingMode;
+import com.wl4g.gateway.metrics.GatewayPlusMetricsFacade;
+import com.wl4g.gateway.security.config.PlusSecurityProperties;
+import com.wl4g.gateway.security.sign.SimpleSignAuthingFilterFactory.SignHashingMode;
 import com.wl4g.infra.common.eventbus.EventBusSupport;
 
 /**
  * {@link SimpleSignAuthingFilterTests}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2022-04-05 v1.0.0
  * @since v1.0.0
  */
@@ -65,9 +65,9 @@ public class SimpleSignAuthingFilterTests {
 
     @TestConfiguration
     public static class TestEnvParameterSimpleParamsBytesSortedHashingS256Configuration {
-        private @Autowired IamSecurityProperties authingConfig;
+        private @Autowired PlusSecurityProperties authingConfig;
         private @Autowired StringRedisTemplate redisTemplate;
-        private @Autowired IamGatewayMetricsFacade metricsFacade;
+        private @Autowired GatewayPlusMetricsFacade metricsFacade;
         private EventBusSupport eventBus = EventBusSupport.getDefault();
 
         // Unable to overwrite the original auto-configuration instance??
@@ -91,7 +91,7 @@ public class SimpleSignAuthingFilterTests {
                             p -> p.path(TEST_ROUTE_PATH).filters(f -> {
                                 // for Add simple sign filter.
                                 SimpleSignAuthingFilterFactory filter = new SimpleSignAuthingFilterFactory(
-                                        new IamSecurityProperties(), redisTemplate, metricsFacade, eventBus);
+                                        new PlusSecurityProperties(), redisTemplate, metricsFacade, eventBus);
                                 SimpleSignAuthingFilterFactory.Config config = new SimpleSignAuthingFilterFactory.Config();
                                 // custom sign parameter name.
                                 config.setSignParam("signature");

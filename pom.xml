@@ -2,11 +2,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.wl4g</groupId>
-	<artifactId>escg</artifactId>
+	<artifactId>gateway-plus</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
-	<name>Enhance Spring Cloud Gateway</name>
-	<url>http://escg.wl4g.com</url>
+	<name>Spring Cloud Gateway Plus</name>
+	<url>http://gateway-plus.wl4g.com</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
@@ -50,7 +50,7 @@
 		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 		<bootstrap-classname>com.wl4g.IamGateway</bootstrap-classname>
-		<final.name>escg</final.name>
+		<final.name>gateway-plus</final.name>
 	</properties>
 	<!-- see:https://swenfang.github.io/2018/06/03/Maven-Priority/ -->
 	<repositories>

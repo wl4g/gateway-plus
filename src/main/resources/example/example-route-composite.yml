@@ -1,5 +1,5 @@
 # Copyright (c) 2017 ~ 2025, the original author wangl.sir individual Inc,
-# All rights reserved. Contact us <Wanglsir@gmail.com, 983708408@qq.com>
+# All rights reserved. Contact us <Wanglsir@gmail.com>
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -8,7 +8,7 @@
 # limitations under the License.
 #
 #
-# #### IAM Gateway Example routes-filter configuration. ####
+# #### Gateway Plus Example routes-filter configuration. ####
 #
 spring:
   cloud:
@@ -71,11 +71,11 @@ spring:
                     cidrs: ['1.1.1.0/24'] ## Default by []
             ##
             ## ------------------------------------------------------
-            ## Filter configuration for testing IamRequestSize
+            ## Filter configuration for testing PlusRequestSize
             ## ------------------------------------------------------
             ##
             ## Limit for request content-length
-            - name: IamRequestSize
+            - name: PlusRequestSize
               args:
                 max-body-size: 5MB ## Default by 5MB
             ##
@@ -120,14 +120,14 @@ spring:
                 sign-algorithm: S256 ## Default by 'S256', Options(MD5|S1|S256|S384|S512|HMD5|HS1|HS256|HS512)
                 sign-hashing-mode: SimpleParamsBytesSortedHashing ## Default by 'UriParamsKeySortedHashing'
                 sign-hashing-include-params: ['*'] ## Default by []
-                sign-hashing-exclude-params: ['response_type','__iscg_log'] ## Default by []
+                sign-hashing-exclude-params: ['response_type','__gw_log'] ## Default by []
                 add-sign-auth-client-id-header: X-Sign-Auth-AppId ## Default by 'X-Sign-Auth-AppId'
             ##
             ## ------------------------------------------------------
-            ## Filter configuration for testing IamRequestLimiter
+            ## Filter configuration for testing PlusRequestLimiter
             ## ------------------------------------------------------
             ##
-            - name: IamRequestLimiter
+            - name: PlusRequestLimiter
               args:
                 #denyEmptyKey: true ## Default are set(recommended)
                 #emptyKeyStatus: FORBIDDEN ## Default are set(recommended)
@@ -140,7 +140,7 @@ spring:
                     ## Note: Be sure to enclose the entire array string in double quotes (to be processed as list<string>),
                     ## otherwise it will be processed as map<string,string>
                     headerNames: "['X-Forwarded-For','Proxy-Client-IP','WL-Proxy-Client-IP']"
-            - name: IamRequestLimiter
+            - name: PlusRequestLimiter
               args:
                 #denyEmptyKey: true ## Default are set(recommended)
                 #emptyKeyStatus: FORBIDDEN ## Default are set(recommended)
@@ -150,7 +150,7 @@ spring:
                 keyResolver:
                   provider: Principal ## Default by Host, options are: Host|Path|Principal|Header|Interval
                   properties: {}
-            - name: IamRequestLimiter
+            - name: PlusRequestLimiter
               args:
                 #denyEmptyKey: true ## Default are set(recommended)
                 #emptyKeyStatus: FORBIDDEN ## Default are set(recommended)
@@ -237,10 +237,10 @@ spring:
                   expireMs: 60_000
             ##
             ## ------------------------------------------------------
-            ## Filter configuration for testing IamRetry
+            ## Filter configuration for testing PlusRetry
             ## ------------------------------------------------------
             ##
-            - name: IamRetry
+            - name: PlusRetry
               args:
                 retries: 3
                 statuses: [BAD_GATEWAY,SERVICE_UNAVAILABLE,GATEWAY_TIMEOUT]
@@ -252,7 +252,7 @@ spring:
                   based-on-previous-value: false
             ##
             ## ------------------------------------------------------
-            ## Filter configuration for testing IamCircuitBreaker
+            ## Filter configuration for testing PlusCircuitBreaker
             ## ------------------------------------------------------
             ##
             ## see:com.wl4g.iam.gateway.circuitbreaker.IamReactiveResilience4JCircuitBreaker
@@ -260,7 +260,7 @@ spring:
             ## see:org.springframework.cloud.gateway.filter.factory.SpringCloudCircuitBreakerFilterFactory
             ## see:https://cloud.spring.io/spring-cloud-circuitbreaker/reference/html/spring-cloud-circuitbreaker.html
             ## see:https://github.com/spring-cloud/spring-cloud-gateway/issues/1370
-            - name: IamCircuitBreaker
+            - name: PlusCircuitBreaker
               args:
                 name: productpage-service-iamcircuitbreaker
                 fallback-uri: forward:/_fallback

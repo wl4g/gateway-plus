@@ -35,7 +35,7 @@ import lombok.ToString;
 /**
  * {@link DyeingLoggingProperties}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2021-09-02 v1.0.0
  * @since v1.0.0
  */
@@ -47,7 +47,7 @@ public class TraceProperties {
 
     private boolean enabled = true;
 
-    @Value("${spring.application.name:iam-gateway}")
+    @Value("${spring.application.name:gateway-plus}")
     private @NotBlank String serviceName;
 
     private ExporterProperties exporter = new ExporterProperties();
@@ -103,7 +103,7 @@ public class TraceProperties {
         private Properties props = new Properties() {
             private static final long serialVersionUID = -3373063731653517759L;
             {
-                put("otlp.resource.attributes", "service.name=cn-south1-a1-iam-gateway,service.namespace=iam-gateway");
+                put("otlp.resource.attributes", "service.name=cn-south1-a1-gateway-plus,service.namespace=gateway-plus");
                 // zipkin|jaeger
                 put("otlp.traces.exporter", "jaeger");
                 // https://github.com/open-telemetry/opentelemetry-java/tree/v1.3.0/sdk-extensions/autoconfigure#sampler

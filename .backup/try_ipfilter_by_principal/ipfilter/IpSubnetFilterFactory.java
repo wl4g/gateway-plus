@@ -44,9 +44,9 @@ import org.springframework.web.server.ServerWebExchange;
 import com.wl4g.iam.gateway.ipfilter.config.IpFilterProperties;
 import com.wl4g.iam.gateway.ipfilter.configurer.IpFilterConfigurer;
 import com.wl4g.iam.gateway.ipfilter.configurer.IpFilterConfigurer.FilterStrategy;
-import com.wl4g.iam.gateway.metrics.IamGatewayMetricsFacade;
-import com.wl4g.iam.gateway.metrics.IamGatewayMetricsFacade.MetricsName;
-import com.wl4g.iam.gateway.metrics.IamGatewayMetricsFacade.MetricsTag;
+import com.wl4g.iam.gateway.metrics.GatewayPlusMetricsFacade;
+import com.wl4g.iam.gateway.metrics.GatewayPlusMetricsFacade.MetricsName;
+import com.wl4g.iam.gateway.metrics.GatewayPlusMetricsFacade.MetricsTag;
 import com.wl4g.iam.gateway.util.IamGatewayUtil;
 import com.wl4g.iam.gateway.util.IamGatewayUtil.SafeFilterOrdered;
 import com.wl4g.infra.common.bean.ConfigBeanUtils;
@@ -66,7 +66,7 @@ import reactor.core.publisher.Mono;
 /**
  * {@link IpSubnetFilterFactory}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2022-05-05 v1.0.0
  * @since v1.0.0
  * @see {@link io.netty.handler.ipfilter.IpSubnetFilterRule}
@@ -75,10 +75,10 @@ public class IpSubnetFilterFactory extends AbstractGatewayFilterFactory<IpSubnet
 
     private final IpFilterProperties ipFilterConfig;
     private final IpFilterConfigurer configurer;
-    private final IamGatewayMetricsFacade metricsFacade;
+    private final GatewayPlusMetricsFacade metricsFacade;
 
     public IpSubnetFilterFactory(IpFilterProperties ipListConfig, IpFilterConfigurer configurer,
-            IamGatewayMetricsFacade metricsFacade) {
+            GatewayPlusMetricsFacade metricsFacade) {
         super(IpSubnetFilterFactory.Config.class);
         this.ipFilterConfig = notNullOf(ipListConfig, "ipListConfig");
         this.configurer = notNullOf(configurer, "configurer");

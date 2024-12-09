@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.wl4g.escg.ipfilter;
+package com.wl4g.gateway.ipfilter;
 
 import static java.util.Arrays.asList;
 
@@ -35,10 +35,10 @@ import org.springframework.mock.env.MockEnvironment;
 import org.springframework.mock.http.server.reactive.MockServerHttpRequest;
 import org.springframework.mock.web.server.MockServerWebExchange;
 
-import com.wl4g.escg.ipfilter.config.IpFilterProperties;
-import com.wl4g.escg.ipfilter.config.IpFilterProperties.IPSubnet;
-import com.wl4g.escg.metrics.IamGatewayMetricsFacade;
-import com.wl4g.escg.mock.MockGatewayFilterChain;
+import com.wl4g.gateway.ipfilter.config.IpFilterProperties;
+import com.wl4g.gateway.ipfilter.config.IpFilterProperties.IPSubnet;
+import com.wl4g.gateway.metrics.GatewayPlusMetricsFacade;
+import com.wl4g.gateway.mock.MockGatewayFilterChain;
 
 import io.micrometer.prometheus.PrometheusConfig;
 import io.micrometer.prometheus.PrometheusMeterRegistry;
@@ -48,21 +48,21 @@ import reactor.test.StepVerifier;
 /**
  * {@link IpSubnetFilterFactoryTests}
  * 
- * @author James Wong &lt;wanglsir@gmail.com, 983708408@qq.com&gt;
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @date 2022-05-05 v1.0.0
  * @since v1.0.0
  */
 public class IpSubnetFilterFactoryTests {
 
-    private IamGatewayMetricsFacade mockMetricsFacade;
+    private GatewayPlusMetricsFacade mockMetricsFacade;
 
     @Before
     public void init() throws Exception {
         MockEnvironment env = new MockEnvironment();
-        env.setProperty("spring.application.name", "test-iam-gateway");
+        env.setProperty("spring.application.name", "test-gateway-plus");
         env.setProperty("server.port", "12345");
 
-        this.mockMetricsFacade = new IamGatewayMetricsFacade(new PrometheusMeterRegistry(new PrometheusConfig() {
+        this.mockMetricsFacade = new GatewayPlusMetricsFacade(new PrometheusMeterRegistry(new PrometheusConfig() {
             @Override
             public String get(String key) {
                 return null;
