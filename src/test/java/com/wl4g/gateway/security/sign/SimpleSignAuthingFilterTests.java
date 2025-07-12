@@ -54,8 +54,8 @@ import com.wl4g.infra.common.eventbus.EventBusSupport;
 @AutoConfigureWebTestClient
 public class SimpleSignAuthingFilterTests {
 
-    private static final String TEST_APPID = "oi554a94bc416e4edd9ff963ed0e9e25e6c10545";
-    private static final String TEST_APPSECRET = "5aUpyX5X7wzC8iLgFNJuxqj3xJdNQw8yS";
+    private static final String TEST_APP_ID = "oi554a94bc416e4edd9ff963ed0e9e25e6c10545";
+    private static final String TEST_APP_SECRET = "5aUpyX5X7wzC8iLgFNJuxqj3xJdNQw8yS";
     private static final String TEST_ROUTE_PATH = "/v2/get";
 
     private @Autowired WebTestClient webClient;
@@ -67,7 +67,7 @@ public class SimpleSignAuthingFilterTests {
         private @Autowired PlusSecurityProperties authingConfig;
         private @Autowired StringRedisTemplate redisTemplate;
         private @Autowired GatewayPlusMetricsFacade metricsFacade;
-        private EventBusSupport eventBus = EventBusSupport.getDefault();
+        private final EventBusSupport eventBus = EventBusSupport.getDefault();
 
         // Unable to overwrite the original auto-configuration instance??
         //
@@ -83,7 +83,7 @@ public class SimpleSignAuthingFilterTests {
         @Bean
         public RouteLocator configureTestRoutes(RouteLocatorBuilder builder) {
             // custom store secret.
-            System.setProperty(authingConfig.getSimpleSign().getSecretStorePrefix() + ":" + TEST_APPID, TEST_APPSECRET);
+            System.setProperty(authingConfig.getSimpleSign().getSecretStorePrefix() + ":" + TEST_APP_ID, TEST_APP_SECRET);
 
             return builder.routes()
                     .route("test-route-with-" + SimpleSignAuthingFilterFactory.class.getSimpleName(),
@@ -111,15 +111,15 @@ public class SimpleSignAuthingFilterTests {
     public void testEnvStoreSimpleParamsBytesSortedHashingS256() throws Exception {
         String nonce = SimpleSignGenerateTool.generateNonce(16);
         long timestamp = currentTimeMillis();
-        String sign = SimpleSignGenerateTool.generateSign(TEST_APPID, TEST_APPSECRET, nonce, timestamp, "SHA-256");
+        String sign = SimpleSignGenerateTool.generateSign(TEST_APP_ID, TEST_APP_SECRET, nonce, timestamp, "SHA-256");
 
         // String uri =
         // format("http://localhost:%s%s?appId=%s&appSecret=%s&nonce=%s&timestamp=%s&signature=%s",
         // java.lang.String.valueOf(port), TEST_ROUTE_PATH, TEST_APPID,
         // TEST_APPSECRET, nonce, timestamp, sign);
 
-        String uri = format("%s?appId=%s&appSecret=%s&nonce=%s&timestamp=%s&signature=%s", TEST_ROUTE_PATH, TEST_APPID,
-                TEST_APPSECRET, nonce, timestamp, sign);
+        String uri = format("%s?appId=%s&appSecret=%s&nonce=%s&timestamp=%s&signature=%s", TEST_ROUTE_PATH, TEST_APP_ID,
+                TEST_APP_SECRET, nonce, timestamp, sign);
 
         webClient.get()
                 .uri(uri)

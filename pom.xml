@@ -423,6 +423,24 @@
 		<!-- <groupId>org.springframework.security</groupId> -->
 		<!-- <artifactId>spring-security-oauth2-jose</artifactId> -->
 		<!-- </dependency> -->
+		<!-- JWT -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.5</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
 		<!-- Admin -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -671,8 +689,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
+					<source>11</source>
+					<target>11</target>
 					<!-- issue:https://stackoverflow.com/questions/64699000/javabeanexecutable-hv000254-missing-parameter-metadata-for-java-enum -->
 					<parameters>true</parameters>
 					<compilerArgs>
@@ -821,27 +839,27 @@
 							</execution>
 						</executions>
 					</plugin>
-					<plugin>
+					<!-- see:https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#native-image-options-useful -->
+					<!-- Unsupported options: -initialize-at-build-time=org.springframework.util.unit.DataSize, without class or package specified is not
+						supported since Spring Native for GraalVM is designed to work with runtime class initialization by default (a selected set of classes are enabled
+						at buildtime). -->
+					<!--<plugin>
 						<groupId>org.graalvm.nativeimage</groupId>
 						<artifactId>native-image-maven-plugin</artifactId>
 						<version>21.2.0</version>
 						<configuration>
 							<mainClass>${bootstrap-classname}</mainClass>
-							<!-- see:https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#native-image-options-useful -->
-							<!-- Unsupported options: -initialize-at-build-time=org.springframework.util.unit.DataSize, without class or package specified is not 
-								supported since Spring Native for GraalVM is designed to work with runtime class initialization by default (a selected set of classes are enabled 
-								at buildtime). -->
 							<buildArgs>
 								-H:+ReportExceptionStackTraces
 								-H:+PrintAnalysisCallTree
 								-H:+PrintClassInitialization
 								-H:Log=registerResource:3
-								--verbose
-								--static
-								--no-fallback
-								--allow-incomplete-classpath
-								--report-unsupported-elements-at-runtime
-								--install-exit-handlers
+								&#45;&#45;verbose
+								&#45;&#45;static
+								&#45;&#45;no-fallback
+								&#45;&#45;allow-incomplete-classpath
+								&#45;&#45;report-unsupported-elements-at-runtime
+								&#45;&#45;install-exit-handlers
 							</buildArgs>
 						</configuration>
 						<executions>
@@ -852,9 +870,9 @@
 								<phase>package</phase>
 							</execution>
 						</executions>
-					</plugin>
+					</plugin>-->
 					<!-- see:https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#aot-build-setup-configuration -->
-					<plugin>
+					<!--<plugin>
 						<groupId>org.springframework.experimental</groupId>
 						<artifactId>spring-aot-maven-plugin</artifactId>
 						<version>${spring-native.version}</version>
@@ -871,7 +889,7 @@
 								</goals>
 							</execution>
 						</executions>
-					</plugin>
+					</plugin>-->
 					<plugin>
 						<groupId>org.springframework.boot</groupId>
 						<artifactId>spring-boot-maven-plugin</artifactId>
