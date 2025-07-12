@@ -24,8 +24,7 @@ import com.wl4g.gateway.metrics.GatewayPlusMetricsFacade.MetricsName;
  * used in systems using cache nodes to improve the cache hit rate.
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @date 2021-09-03 v1.0.0
- * @since v1.0.0
+ * @since v1.0.0 2021-09-03
  * @see {@link org.springframework.cloud.loadbalancer.core.RoundRobinLoadBalancer}
  */
 public class DestinationCanaryHashLoadBalancerChooser extends RoundRobinCanaryLoadBalancerChooser {

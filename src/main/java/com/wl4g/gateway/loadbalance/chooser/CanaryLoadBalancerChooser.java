@@ -10,8 +10,7 @@ import com.wl4g.infra.common.framework.operator.Operator;
  * {@link CanaryLoadBalancerChooser}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @date 2021-09-03 v1.0.0
- * @since v1.0.0
+ * @since v1.0.0 2021-09-03
  */
 public interface CanaryLoadBalancerChooser extends Operator<CanaryLoadBalancerChooser.LoadBalancerAlgorithm> {
 

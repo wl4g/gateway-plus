@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 ~ 2025 the original authors James Wong.
+ * Copyright 2017 ~ 2035 the original authors James Wong.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,8 +30,7 @@ import com.wl4g.infra.common.log.SmartLogger;
  * {@link AbstractRedisPlusRequestLimiter}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @date 2022-04-21 v1.0.0
- * @since v1.0.0
+ * @since v1.0.0 2022-04-21
  */
 public abstract class AbstractRedisPlusRequestLimiter<S extends RequestLimiterStrategy> implements PlusRequestLimiter {
     protected final SmartLogger log = getLogger(getClass());

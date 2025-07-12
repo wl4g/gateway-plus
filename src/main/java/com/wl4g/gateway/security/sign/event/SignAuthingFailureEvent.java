@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 ~ 2025 the original authors James Wong.
+ * Copyright 2017 ~ 2035 the original authors James Wong.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.wl4g.gateway.security.sign.event;
 
 import com.wl4g.gateway.security.sign.SimpleSignAuthingFilterFactory.AppIdExtractor;
@@ -23,10 +24,9 @@ import lombok.Getter;
 
 /**
  * {@link SignAuthingFailureEvent}
- * 
+ *
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @date 2022-04-18 v1.0.0
- * @since v1.0.0
+ * @since v1.0.0 2022-04-18
  */
 @Getter
 public class SignAuthingFailureEvent extends BaseSignAuthingFailureEvent {
@@ -35,7 +35,7 @@ public class SignAuthingFailureEvent extends BaseSignAuthingFailureEvent {
     private final String cause;
 
     public SignAuthingFailureEvent(String appId, AppIdExtractor extractor, SignAlgorithm algorithm, SignHashingMode mode,
-            String routeId, String requsetPath, String cause) {
+                                   String routeId, String requsetPath, String cause) {
         super(appId, extractor, algorithm, mode, routeId, requsetPath);
         this.cause = cause;
     }

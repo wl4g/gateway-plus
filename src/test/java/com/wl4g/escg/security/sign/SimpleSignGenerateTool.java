@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 ~ 2025 the original authors James Wong.
+ * Copyright 2017 ~ 2035 the original authors James Wong.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import java.util.Random;
 /**
  * {@link SimpleSignGenerateTool}
  *
- * @author James Wong<jamewong1376@gmail.com>
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @version v1.0 2020-09-04
  * @since
  */
@@ -148,7 +148,7 @@ public class SimpleSignGenerateTool {
 
         out.println(format("## HTTP Request:\n"));
         out.println(format("curl -vL \\\n"
-                + "-H 'X-Escg-Trace: y' \\\n-H 'X-Escg-Log: y' \\\n-H 'X-Escg-Log-Level: 10' \\\n-H 'X-Response-Type: 10' \\\n"
+                + "-H 'X-GWP-Trace: y' \\\n-H 'X-GWP-Log: y' \\\n-H 'X-GWP-Log-Level: 10' \\\n-H 'X-Response-Type: 10' \\\n"
                 + "\"http://${REMOTE_IP}:18085/openapi/v2/hello?appId=${APPID}&nonce=${NONCE}&timestamp=${TIMESTAMP}&sign=${SIGN}\"",
                 appId, nonce, timestamp, sign));
         out.println();
@@ -157,7 +157,7 @@ public class SimpleSignGenerateTool {
 
         out.println(format("## HTTPs Request:\n"));
         out.println(format("curl -vsSkL \\\n--cacert a.pem \\\n--cert client1.pem \\\n--key client1-key.pem \\\n"
-                + "-H 'X-Escg-Trace: y' \\\n-H 'X-Escg-Log: y' \\\n-H 'X-Escg-Log-Level: 10' \\\n-H 'X-Response-Type: 10' \\\n"
+                + "-H 'X-GWP-Trace: y' \\\n-H 'X-GWP-Log: y' \\\n-H 'X-GWP-Log-Level: 10' \\\n-H 'X-Response-Type: 10' \\\n"
                 + "\"https://${REMOTE_IP}:18085/openapi/v2/hello?appId=${APPID}&nonce=${NONCE}&timestamp=${TIMESTAMP}&sign=${SIGN}\"",
                 appId, nonce, timestamp, sign));
     }

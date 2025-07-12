@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 ~ 2025 the original authors James Wong.
+ * Copyright 2017 ~ 2035 the original authors James Wong.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.wl4g.gateway.security.sign;
 
 import static com.google.common.base.Charsets.UTF_8;
@@ -84,7 +85,7 @@ import reactor.core.publisher.Mono;
 
 /**
  * {@link SimpleSignAuthingFilterFactory}
- * 
+ *
  * <p>
  * Comparison of global filter and gateway filter: </br>
  * Speaking of their connection, we know that whether it is a global filter or a
@@ -95,7 +96,7 @@ import reactor.core.publisher.Mono;
  * see this change in the constructor of
  * {@link org.springframework.cloud.gateway.handler.FilteringWebHandler#handle(ServerWebExchange)}.
  * </p>
- * 
+ *
  * <p>
  * The simple signature filter should be executed before the rate limiting
  * filter because rate limiting needs to be done based on the authentication
@@ -108,10 +109,9 @@ import reactor.core.publisher.Mono;
  * and
  * {@link org.springframework.cloud.gateway.filter.factory.RequestRateLimiterGatewayFilterFactory}
  * </p>
- * 
+ *
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @date 2021-09-01 v1.0.0
- * @since v1.0.0
+ * @since v1.0.0 2021-09-01
  */
 public class SimpleSignAuthingFilterFactory extends AbstractGatewayFilterFactory<SimpleSignAuthingFilterFactory.Config> {
 
@@ -124,15 +124,15 @@ public class SimpleSignAuthingFilterFactory extends AbstractGatewayFilterFactory
     private final Map<String, RedisBloomFilter<String>> cachedBloomFilters = new ConcurrentHashMap<>(8);
 
     public SimpleSignAuthingFilterFactory(@NotNull PlusSecurityProperties authingConfig,
-            @NotNull StringRedisTemplate redisTemplate, @NotNull GatewayPlusMetricsFacade metricsFacade,
-            EventBusSupport eventBus) {
+                                          @NotNull StringRedisTemplate redisTemplate, @NotNull GatewayPlusMetricsFacade metricsFacade,
+                                          EventBusSupport eventBus) {
         super(SimpleSignAuthingFilterFactory.Config.class);
         this.authingConfig = notNullOf(authingConfig, "authingConfig");
         this.redisTemplate = notNullOf(redisTemplate, "redisTemplate");
         this.metricsFacade = notNullOf(metricsFacade, "metricsFacade");
         this.eventBus = notNullOf(eventBus, "eventBus");
         this.secretCacheStore = newBuilder().expireAfterWrite(authingConfig.getSimpleSign().getSecretLocalCacheSeconds(), SECONDS)
-                .build();
+                                            .build();
     }
 
     @Override
@@ -143,19 +143,19 @@ public class SimpleSignAuthingFilterFactory extends AbstractGatewayFilterFactory
     /**
      * For the source code of the gateway filter chain implementation, see to:
      * {@link org.springframework.cloud.gateway.handler.FilteringWebHandler#handle(ServerWebExchange)}
-     * 
+     * <p>
      * {@link org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator.getRoutes()}
-     * 
+     * <p>
      * Note: All requests will be filtered if
      * {@link org.springframework.cloud.gateway.filter.GlobalFilter} is
      * implemented. </br>
      * for example:
-     * 
+     *
      * <pre>
-     * storedAppSecret=5aUpyX5X7wzC8iLgFNJuxqj3xJdNQw8yS
-     * curl http://wl4g.debug:14085/openapi/v2/test?appId=oi554a94bc416e4edd9ff963ed0e9e25e6c10545&nonce=0L9GyULPfwsD3Swg&timestamp=1599637679878&signature=5ac8747ccc2b1b332e8445b496d0c38529b38fba2c1b8ca8490cbf2932e06943
+     * storedAppSecret='5aUpyX5X7wzC8iLgFNJuxqj3xJdNQw8yS'
+     * curl -v localhost:14085/openapi/v2/test?appId=oi554a94bc416e4edd9ff963ed0e9e25e6c10545&nonce=0L9GyULPfwsD3Swg&timestamp=1599637679878&signature=5ac8747ccc2b1b332e8445b496d0c38529b38fba2c1b8ca8490cbf2932e06943
      * </pre>
-     * 
+     * <p>
      * Filters are looked up on every request,
      * see:{@link org.springframework.cloud.gateway.filter.factory.RequestRateLimiterGatewayFilterFactory#apply()}
      */
@@ -167,7 +167,7 @@ public class SimpleSignAuthingFilterFactory extends AbstractGatewayFilterFactory
     private RedisBloomFilter<String> obtainBloomFilter(ServerWebExchange exchange, SimpleSignAuthingFilterFactory.Config config) {
         String routeId = ((Route) exchange.getAttributes().get(ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR)).getId();
         if (isBlank(routeId)) {
-            throw new Error(format("Should't be here, cannot to get routeId"));
+            throw new Error("Shouldn't be here, cannot to get routeId");
         }
         RedisBloomFilter<String> bloomFilter = cachedBloomFilters.get(routeId);
         if (isNull(bloomFilter)) {
@@ -187,7 +187,7 @@ public class SimpleSignAuthingFilterFactory extends AbstractGatewayFilterFactory
     private String getBloomKey(ServerWebExchange exchange) {
         String routeId = ((Route) exchange.getAttributes().get(ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR)).getId();
         if (isBlank(routeId)) {
-            throw new Error(format("Should't be here, cannot to get routeId"));
+            throw new Error("Shouldn't be here, cannot to get routeId");
         }
         return authingConfig.getSimpleSign().getSignReplayVerifyBloomLoadPrefix().concat(":").concat(routeId);
     }
@@ -200,9 +200,9 @@ public class SimpleSignAuthingFilterFactory extends AbstractGatewayFilterFactory
         try {
             // Make signature plain text.
             byte[] signPlainBytes = config.getSignHashingMode().getFunction().apply(
-                    new Object[] { config, storedAppSecret, exchange.getRequest() });
+                    new Object[] {config, storedAppSecret, exchange.getRequest()});
             // Hashing signature.
-            return config.getSignAlgorithm().getFunction().apply(new byte[][] { storedAppSecret, signPlainBytes });
+            return config.getSignAlgorithm().getFunction().apply(new byte[][] {storedAppSecret, signPlainBytes});
         } finally {
             // Add time metrics.
             addTimerMetrics(exchange, MetricsName.SIMPLE_SIGN_TIME, config, beginTime);
@@ -210,37 +210,37 @@ public class SimpleSignAuthingFilterFactory extends AbstractGatewayFilterFactory
     }
 
     private byte[] loadStoredSecret(SimpleSignAuthingFilterFactory.Config config, String appId) {
-        String loadKey = authingConfig.getSimpleSign().getSecretStorePrefix().concat(":").concat(appId);
+        final String loadKey = authingConfig.getSimpleSign().getSecretStorePrefix().concat(":").concat(appId);
+        String storedSecret = System.getenv(loadKey);
         switch (authingConfig.getSimpleSign().getSecretStore()) {
-        case ENV:
-            String storedSecret = System.getenv(loadKey);
-            // Downgrade acquisition, for example, during integration testing,
-            // process environment variables cannot be modified.
-            storedSecret = isBlank(storedSecret) ? System.getProperty(loadKey) : null;
-            if (isBlank(storedSecret)) {
-                log.warn("No found client secret from {} via '{}'", SecretStore.ENV, loadKey);
-                throw new IllegalArgumentException(format("No enables client secret?"));
-            }
-            return storedSecret.getBytes(UTF_8);
-        case REDIS:
-            storedSecret = secretCacheStore.asMap().get(loadKey);
-            if (isBlank(storedSecret)) {
-                synchronized (loadKey) {
-                    storedSecret = secretCacheStore.asMap().get(loadKey);
-                    if (isBlank(storedSecret)) {
-                        storedSecret = redisTemplate.opsForValue().get(loadKey);
+            case ENV:
+                // Downgrade acquisition, for example, during integration testing,
+                // process environment variables cannot be modified.
+                storedSecret = isBlank(storedSecret) ? System.getProperty(loadKey) : null;
+                if (isBlank(storedSecret)) {
+                    log.warn("No found client secret with '{}' in env.", loadKey);
+                    throw new IllegalArgumentException("No enables client secret?");
+                }
+                return storedSecret.getBytes(UTF_8);
+            case REDIS:
+                storedSecret = secretCacheStore.asMap().get(loadKey);
+                if (isBlank(storedSecret)) {
+                    synchronized (loadKey) {
+                        storedSecret = secretCacheStore.asMap().get(loadKey);
                         if (isBlank(storedSecret)) {
-                            log.warn("No found client secret from {} via '{}'", SecretStore.REDIS, loadKey);
-                            throw new IllegalArgumentException(format("No enables client secret?"));
+                            storedSecret = redisTemplate.opsForValue().get(loadKey);
+                            if (isBlank(storedSecret)) {
+                                log.warn("No found client secret with '{}' in redis", loadKey);
+                                throw new IllegalArgumentException("No enables client secret?");
+                            }
+                            secretCacheStore.asMap().put(loadKey, storedSecret);
+                            return storedSecret.getBytes(UTF_8);
                         }
-                        secretCacheStore.asMap().put(loadKey, storedSecret);
-                        return storedSecret.getBytes(UTF_8);
                     }
                 }
-            }
-            return storedSecret.getBytes(UTF_8);
-        default:
-            throw new Error("Shouldn't be here");
+                return storedSecret.getBytes(UTF_8);
+            default:
+                throw new Error("Shouldn't be here");
         }
     }
 
@@ -250,7 +250,7 @@ public class SimpleSignAuthingFilterFactory extends AbstractGatewayFilterFactory
         // appId (such as Alibaba Cloud Market SaaS product authentication
         // API), then the uniqueness of the client application can only be
         // determined according to the request route ID.
-        return config.getAppIdExtractor().getFunction().apply(new Object[] { config, exchange });
+        return config.getAppIdExtractor().getFunction().apply(new Object[] {config, exchange});
     }
 
     private Mono<Void> writeResponse(HttpStatus status, ServerWebExchange exchange, String fmtMessage, Object... args) {
@@ -474,14 +474,14 @@ public class SimpleSignAuthingFilterFactory extends AbstractGatewayFilterFactory
 
         private static String[] getEffectiveHashingParamNames(Config config, Map<String, String> queryParams) {
             List<String> hashingParamNames = queryParams.keySet()
-                    .stream()
-                    .filter(n -> config.isIncludeAll() || safeList(config.getSignHashingIncludeParams()).contains(n))
-                    .filter(n -> !safeList(config.getSignHashingExcludeParams()).contains(n))
-                    .collect(toList());
+                                                        .stream()
+                                                        .filter(n -> config.isIncludeAll() || safeList(config.getSignHashingIncludeParams()).contains(n))
+                                                        .filter(n -> !safeList(config.getSignHashingExcludeParams()).contains(n))
+                                                        .collect(toList());
 
             // Validation required parameters.
             boolean allMatch = safeList(config.getSignHashingRequiredIncludeParams()).stream()
-                    .allMatch(p -> hashingParamNames.contains(p));
+                                                                                     .allMatch(p -> hashingParamNames.contains(p));
             if (!allMatch) {
                 throw new IllegalArgumentException(format("Parameters missing, These parameters are required: %s",
                         config.getSignHashingRequiredIncludeParams()));

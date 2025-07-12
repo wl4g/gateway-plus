@@ -17,9 +17,8 @@ import lombok.ToString;
 /**
  * {@link PlusSecurityProperties}
  *
- * @author James Wong<jamewong1376@gmail.com>
- * @version v1.0 2020-07-23
- * @since
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
+ * @since v1.0 2020-07-23
  */
 @Getter
 @Setter
@@ -62,8 +61,8 @@ public class PlusSecurityProperties {
         private EventRecorderProperties eventRecorder = new EventRecorderProperties();
     }
 
-    public static enum SecretStore {
-        ENV, REDIS;
+    public enum SecretStore {
+        ENV, REDIS
     }
 
     @Getter

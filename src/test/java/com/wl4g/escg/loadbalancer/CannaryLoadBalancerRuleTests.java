@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 ~ 2025 the original authors James Wong.
+ * Copyright 2017 ~ 2035 the original authors James Wong.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,8 +34,7 @@ import com.wl4g.gateway.loadbalance.stats.LoadBalancerStats;
  * {@link CannaryLoadBalancerRuleTests}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @date 2022-04-13 v1.0.0
- * @since v1.0.0
+ * @since v1.0.0 2022-04-13
  */
 public class CannaryLoadBalancerRuleTests {
 
@@ -73,7 +72,7 @@ public class CannaryLoadBalancerRuleTests {
     private List<ServiceInstance> doOnlyFindCandidateInstances(List<String> matchedRuleNames) {
         CanaryLoadBalancerProperties config = new CanaryLoadBalancerProperties();
         config.getDefaultChoose().setFallbackAllToCandidates(true);
-        config.setCanaryDiscoveryServiceLabelPrefix("Escg-Canary-Label");
+        config.setCanaryDiscoveryServiceLabelPrefix("GWP-Canary-Label");
 
         AbstractCanaryLoadBalancerChooser rule = new AbstractCanaryLoadBalancerChooser() {
             @Override
@@ -100,14 +99,14 @@ public class CannaryLoadBalancerRuleTests {
         List<ServiceInstance> instances = new ArrayList<>();
         // instance1
         Map<String, String> metadata1 = new HashMap<>();
-        metadata1.put("Escg-Canary-Label-Header", "v1-canary-header");
-        metadata1.put("Escg-Canary-Label-Query", "v1-canary-query");
+        metadata1.put("GWP-Canary-Label-Header", "v1-canary-header");
+        metadata1.put("GWP-Canary-Label-Query", "v1-canary-query");
         instances.add(new DefaultServiceInstance("n1.portal.wl4g.io:8080", "portal-service", "n1.portal.wl4g.io", 8080, false,
                 metadata1));
         // instance2
         Map<String, String> metadata2 = new HashMap<>();
-        metadata2.put("Escg-Canary-Label-Header", "v2-canary-header");
-        metadata2.put("Escg-Canary-Label-Query", "v2-canary-query");
+        metadata2.put("GWP-Canary-Label-Header", "v2-canary-header");
+        metadata2.put("GWP-Canary-Label-Query", "v2-canary-query");
         instances.add(new DefaultServiceInstance("n2.portal.wl4g.io:8080", "portal-service", "n2.portal.wl4g.io", 8080, false,
                 metadata2));
 

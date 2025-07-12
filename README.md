@@ -50,9 +50,9 @@ java -Djavax.net.debug=all -jar gateway-plus-1.0.0-bin.jar --server.ssl.enabled=
 
 ```bash
 curl -vsSkL -XGET \
--H 'X-Escg-Trace: y' \
--H 'X-Escg-Log: y' \
--H 'X-Escg-Log-Level: 10' \
+-H 'X-GWP-Trace: y' \
+-H 'X-GWP-Log: y' \
+-H 'X-GWP-Log-Level: 10' \
 --cacert ca.pem \
 --cert client1.pem \
 --key client1-key.pem \
@@ -71,9 +71,9 @@ java -Djavax.net.debug=all -jar gateway-plus-1.0.0-bin.jar --server.ssl.enabled=
 
 ```bash
 curl -vsSkL -XGET \
--H 'X-Escg-Trace: y' \
--H 'X-Escg-Log: y' \
--H 'X-Escg-Log-Level: 10' \
+-H 'X-GWP-Trace: y' \
+-H 'X-GWP-Log: y' \
+-H 'X-GWP-Log-Level: 10' \
 --cacert ca.pem \
 --cert client1.pem \
 --key client1-key.pem \
@@ -95,16 +95,16 @@ export localIp=$(ifconfig|grep -A 4 -E '^em*|^eno*|^enp*|^ens*|^eth*|^wlp*'|grep
 
 # for testing positive example
 curl -vsSkL -XGET \
--H 'X-Escg-Trace: y' \
--H 'X-Escg-Log: y' \
--H 'X-Escg-Log-Level: 10' \
+-H 'X-GWP-Trace: y' \
+-H 'X-GWP-Log: y' \
+-H 'X-GWP-Log-Level: 10' \
 "http://$localIp:18085/productpage-with-IpFilter/get"
 
 # for testing negative example
 curl -vsSkL -XPOST \
--H 'X-Escg-Trace: y' \
--H 'X-Escg-Log: y' \
--H 'X-Escg-Log-Level: 10' \
+-H 'X-GWP-Trace: y' \
+-H 'X-GWP-Log: y' \
+-H 'X-GWP-Log-Level: 10' \
 -H 'Content-Type: application/json' \
 -H 'X-Forwarded-For: 1.1.1.2' \
 -d '{"name":"jack"}' \
@@ -128,19 +128,19 @@ spring:
 ```bash
 ## for testing positive example1
 curl -vsSkL -XGET \
--H 'X-Escg-Trace: y' \
--H 'X-Escg-Log: y' \
--H 'X-Escg-Log-Level: 10' \
--H 'X-Escg-Fault: y' \
+-H 'X-GWP-Trace: y' \
+-H 'X-GWP-Log: y' \
+-H 'X-GWP-Log-Level: 10' \
+-H 'X-GWP-Fault: y' \
 'http://localhost:18085/productpage-with-FaultInjector/get'
 
 ## for testing positive example2
 curl -vsSkL -XPOST \
 -H 'Content-Type: application/json' \
--H 'X-Escg-Trace: y' \
--H 'X-Escg-Log: y' \
--H 'X-Escg-Log-Level: 10' \
--H 'X-Escg-Fault: y' \
+-H 'X-GWP-Trace: y' \
+-H 'X-GWP-Log: y' \
+-H 'X-GWP-Log-Level: 10' \
+-H 'X-GWP-Fault: y' \
 -d '{"name":"jack"}' \
 'http://localhost:18085/productpage-with-FaultInjector/post'
 ```
@@ -193,9 +193,9 @@ export SIGN=aa9c39efe90ef44bbcae258bb0b40653489186ac58266e092e3e420f1caa1573
 export REMOTE_IP=127.0.0.1
 
 curl -vL \
--H 'X-Escg-Trace: y' \
--H 'X-Escg-Log: y' \
--H 'X-Escg-Log-Level: 10' \
+-H 'X-GWP-Trace: y' \
+-H 'X-GWP-Log: y' \
+-H 'X-GWP-Log-Level: 10' \
 -H 'X-Response-Type: 10' \
 "http://${REMOTE_IP}:18085/productpage-with-SimpleSignAuthing/get?appId=${APPID}&nonce=${NONCE}&timestamp=${TIMESTAMP}&sign=${SIGN}"
 ```
@@ -220,10 +220,10 @@ curl -vL \
     "X-Amzn-Trace-Id": "Root=1-6283728d-27e55d6370e6b361627c5ea8", 
     "X-Forwarded-Host": "127.0.0.1:18085", 
     "X-Forwarded-Prefix": "/productpage-with-SimpleSignAuthing", 
-    "X-Escg-Log": "y", 
-    "X-Escg-Log-Dyeing-State": "b9072cb8bcff2b47082b2f53199ef1a8", 
-    "X-Escg-Log-Level": "10", 
-    "X-Escg-Trace": "y", 
+    "X-GWP-Log": "y", 
+    "X-GWP-Log-Dyeing-State": "b9072cb8bcff2b47082b2f53199ef1a8", 
+    "X-GWP-Log-Level": "10", 
+    "X-GWP-Trace": "y", 
     "X-Response-Type": "10", 
     "X-Sign-Auth-Appid": "oijvin6crxu2qdqvpgls9jmijz4t6istxs"
   }, 
@@ -260,9 +260,9 @@ hgetall escg:auth:sign:event:failure:productpage-service-route-with-SimpleSignAu
 ```bash
 ## for testing negative example(limited)
 ab -n 2000 -c 15 \
--H 'X-Escg-Trace: y' \
--H 'X-Escg-Log: y' \
--H 'X-Escg-Log-Level: 10' \
+-H 'X-GWP-Trace: y' \
+-H 'X-GWP-Log: y' \
+-H 'X-GWP-Log-Level: 10' \
 -m POST \
 'http://localhost:18085/productpage-with-PlusRequestLimiter/post?response_type=json'
 ```
@@ -274,23 +274,23 @@ or configure by routeId+limitKey: `{"includeHeaders":true, ...}`, refer to follo
 
 ```bash
 curl -vsSkL -XPOST \
--H 'X-Escg-Trace: y' \
--H 'X-Escg-Log: y' \
--H 'X-Escg-Log-Level: 10' \
+-H 'X-GWP-Trace: y' \
+-H 'X-GWP-Log: y' \
+-H 'X-GWP-Log-Level: 10' \
 -X POST \
 'http://localhost:18085/productpage-with-PlusRequestLimiter/post?response_type=json'
 
 HTTP/1.1 200 OK
 X-Request-Id: 643603ccd11aadf5a705191e5c11b2a4
-X-Escg-RateLimit-Requested-Tokens: 1
-X-Escg-RateLimit-Replenish-Rate: 10
-X-Escg-RateLimit-LimitKey: 127.0.0.1
-X-Escg-RateLimit-Burst-Capacity: 200
-X-Escg-RateLimit-Remaining: 199
-X-Escg-QuotaLimit-Remaining: 474
-X-Escg-QuotaLimit-Cycle: 220518
-X-Escg-QuotaLimit-LimitKey: /productpage-with-PlusRequestLimiter/post
-X-Escg-QuotaLimit-Request-Capacity: 1000
+X-GWP-RateLimit-Requested-Tokens: 1
+X-GWP-RateLimit-Replenish-Rate: 10
+X-GWP-RateLimit-LimitKey: 127.0.0.1
+X-GWP-RateLimit-Burst-Capacity: 200
+X-GWP-RateLimit-Remaining: 199
+X-GWP-QuotaLimit-Remaining: 474
+X-GWP-QuotaLimit-Cycle: 220518
+X-GWP-QuotaLimit-LimitKey: /productpage-with-PlusRequestLimiter/post
+X-GWP-QuotaLimit-Request-Capacity: 1000
 ...
 ...
 ```
@@ -368,13 +368,13 @@ python3 -m http.server -b 0.0.0.0 8888
 ## 2. Then observe the output of the simulated mirror http server, and the response of the simulated real http server.
 
 ## for testing positive example1
-curl -vsSkL -XGET -H 'X-Escg-Trace: y' -H 'X-Escg-Log-Level: 10' 'http://localhost:18085/productpage-with-TrafficReplicator/get'
+curl -vsSkL -XGET -H 'X-GWP-Trace: y' -H 'X-GWP-Log-Level: 10' 'http://localhost:18085/productpage-with-TrafficReplicator/get'
 
 ## for testing positive example2
 curl -vsSkL -XPOST \
--H 'X-Escg-Trace: y' \
--H 'X-Escg-Log: y' \
--H 'X-Escg-Log-Level: 10' \
+-H 'X-GWP-Trace: y' \
+-H 'X-GWP-Log: y' \
+-H 'X-GWP-Log-Level: 10' \
 -H 'Content-Type: application/json' \
 -d '{"name":"jack"}' \
 'http://localhost:18085/productpage-with-TrafficReplicator/post'
@@ -385,18 +385,18 @@ curl -vsSkL -XPOST \
 ```bash
 ## for testing positive example
 curl -vsSkL -XGET \
--H 'X-Escg-Trace: y' \
--H 'X-Escg-Log: y' \
--H 'X-Escg-Log-Level: 10' \
--H 'X-Escg-Cache: y' \
+-H 'X-GWP-Trace: y' \
+-H 'X-GWP-Log: y' \
+-H 'X-GWP-Log-Level: 10' \
+-H 'X-GWP-Cache: y' \
 "http://localhost:18085/productpage-with-ResponseCache/get"
 
 ## for testing negative example
 curl -vsSkL -XGET \
--H 'X-Escg-Trace: y' \
--H 'X-Escg-Log: y' \
--H 'X-Escg-Log-Level: 10' \
--H 'X-Escg-Cache: n' \
+-H 'X-GWP-Trace: y' \
+-H 'X-GWP-Log: y' \
+-H 'X-GWP-Log-Level: 10' \
+-H 'X-GWP-Cache: n' \
 "http://localhost:18085/productpage-with-ResponseCache/get"
 ```
 
@@ -413,20 +413,20 @@ TODO
 ```bash
 ## for testing positive example
 curl -vsSkL -XPOST \
--H 'X-Escg-Trace: y' \
--H 'X-Escg-Log: y' \
--H 'X-Escg-Log-Level: 10' \
--H 'X-Escg-Cache: y' \
--H 'X-Escg-Canary: v1' \
+-H 'X-GWP-Trace: y' \
+-H 'X-GWP-Log: y' \
+-H 'X-GWP-Log-Level: 10' \
+-H 'X-GWP-Cache: y' \
+-H 'X-GWP-Canary: v1' \
 "http://localhost:18085/productpage-with-CanaryLoadBalancer/post"
 
 ## for testing positive example
 curl -vsSkL -XPOST \
--H 'X-Escg-Trace: y' \
--H 'X-Escg-Log: y' \
--H 'X-Escg-Log-Level: 10' \
--H 'X-Escg-Cache: y' \
--H 'X-Escg-Canary: v2' \
+-H 'X-GWP-Trace: y' \
+-H 'X-GWP-Log: y' \
+-H 'X-GWP-Log-Level: 10' \
+-H 'X-GWP-Cache: y' \
+-H 'X-GWP-Canary: v2' \
 "http://localhost:18085/productpage-with-CanaryLoadBalancer/post"
 ```
 
@@ -456,11 +456,11 @@ curl -v 'http://localhost:18086/actuator/prometheus'
 
 ```bash
 ab -n 10000 -c 1000 \
--H 'X-Escg-Trace: y' \
--H 'X-Escg-Log: y' \
--H 'X-Escg-Log-Level: 0' \
--H 'X-Escg-Fault: y' \
--H 'X-Escg-Canary: v1' \
+-H 'X-GWP-Trace: y' \
+-H 'X-GWP-Log: y' \
+-H 'X-GWP-Log-Level: 0' \
+-H 'X-GWP-Fault: y' \
+-H 'X-GWP-Canary: v1' \
 -m POST \
 'http://localhost:18085/productpage-with-PlusRequestLimiter/post?&response_type=json'
 ```

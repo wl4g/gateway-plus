@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 ~ 2025 the original authors James Wong.
+ * Copyright 2017 ~ 2035 the original authors James Wong.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.wl4g.gateway.trace;
 
-import static com.wl4g.infra.common.lang.Assert2.notNullOf;
-import static com.wl4g.infra.common.reflect.ReflectionUtils2.findField;
-import static com.wl4g.infra.common.reflect.ReflectionUtils2.getField;
-
-import java.lang.reflect.Field;
-
+import com.wl4g.gateway.trace.config.GrayTraceProperties;
+import com.wl4g.gateway.util.IamGatewayUtil;
+import com.wl4g.infra.context.utils.web.ReactiveRequestExtractor;
+import com.wl4g.infra.context.web.matcher.SpelRequestMatcher;
+import lombok.CustomLog;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.sleuth.CurrentTraceContext;
 import org.springframework.cloud.sleuth.Tracer;
@@ -29,18 +30,18 @@ import org.springframework.cloud.sleuth.instrument.web.TraceWebFilter;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilterChain;
-
-import com.wl4g.gateway.trace.config.GrayTraceProperties;
-import com.wl4g.gateway.util.IamGatewayUtil;
-import com.wl4g.infra.context.utils.web.ReactiveRequestExtractor;
-import com.wl4g.infra.context.web.matcher.SpelRequestMatcher;
-
-import lombok.CustomLog;
 import reactor.core.publisher.Mono;
+
+import java.lang.reflect.Field;
+
+import static com.wl4g.infra.common.lang.Assert2.notNullOf;
+import static com.wl4g.infra.common.reflect.ReflectionUtils2.findField;
+import static com.wl4g.infra.common.reflect.ReflectionUtils2.getField;
+import static java.util.Objects.requireNonNull;
 
 /**
  * {@link GrayTraceWebFilter}
- * 
+ *
  * <p>
  * Comparison of {@link org.springframework.cloud.gateway.filter.GlobalFilter}
  * and {@link org.springframework.cloud.gateway.filter.GatewayFilter}: </br>
@@ -52,17 +53,16 @@ import reactor.core.publisher.Mono;
  * by means of an adapter. We can see this change in the constructor of
  * {@link org.springframework.cloud.gateway.handler.FilteringWebHandler}.
  * </p>
- * 
+ *
  * <p>
  * and comparison of {@link org.springframework.web.server.WebFilter}: The web
  * filter is also global and will be executed regardless of whether the route
  * matches or not. This is the difference from the {@linkplain GlobalFilter}.
  * The execution order is the earliest.
  * </p>
- * 
+ *
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @date 2021-09-02 v1.0.0
- * @since v1.0.0
+ * @since v1.0.0 2021-09-02
  */
 @CustomLog
 public class GrayTraceWebFilter extends TraceWebFilter {
@@ -71,13 +71,14 @@ public class GrayTraceWebFilter extends TraceWebFilter {
     private final SpelRequestMatcher requestMatcher;
 
     public GrayTraceWebFilter(GrayTraceProperties grayTraceConfig, Tracer tracer, HttpServerHandler handler,
-            CurrentTraceContext currentTraceContext) {
+                              CurrentTraceContext currentTraceContext) {
         super(tracer, handler, currentTraceContext);
         this.grayTraceConfig = notNullOf(grayTraceConfig, "grayTraceConfig");
         // Build canary request matcher.
         this.requestMatcher = new SpelRequestMatcher(grayTraceConfig.getPreferMatchRuleDefinitions());
     }
 
+    @NotNull
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         if (!isTraceRequest(exchange)) {
@@ -89,23 +90,21 @@ public class GrayTraceWebFilter extends TraceWebFilter {
             return chain.filter(exchange);
         }
 
-        /**
-         * see;{@link org.springframework.cloud.sleuth.otel.bridge.EventPublishingContextWrapper#apply(ContextStorage)}↓
-         * see;{@link org.springframework.cloud.sleuth.otel.bridge.Slf4jBaggageApplicationListener#onScopeAttached(ScopeAttachedEvent)}↓
+        /*
+         * see:{@link org.springframework.cloud.sleuth.otel.bridge.EventPublishingContextWrapper#apply(ContextStorage)}↓
+         * see:{@link org.springframework.cloud.sleuth.otel.bridge.Slf4jBaggageApplicationListener#onScopeAttached(ScopeAttachedEvent)}↓
          * see:{@link io.opentelemetry.api.baggage.BaggageContextKey.KEY}↓
          */
-        return exchange.getPrincipal().defaultIfEmpty(IamGatewayUtil.UNKNOWN_PRINCIPAL).flatMap(principal -> {
-            getTracer().getBaggage("principal").set(principal.getName());
-            return Mono.justOrEmpty(principal);
-        }).then(super.filter(exchange, chain));
+        return exchange.getPrincipal()
+                       .defaultIfEmpty(IamGatewayUtil.UNKNOWN_PRINCIPAL)
+                       .flatMap(principal -> {
+                           requireNonNull(getTracer().getBaggage("principal")).set(principal.getName());
+                           return Mono.justOrEmpty(principal);
+                       })
+                       .then(super.filter(exchange, chain));
     }
 
-    /**
-     * Check if enable tracking needs to be filtered.
-     * 
-     * @param exchange
-     * @return
-     */
+    // Check if enable tracking needs to be filtered.
     protected boolean isTraceRequest(ServerWebExchange exchange) {
         if (!grayTraceConfig.isEnabled()) {
             return false;

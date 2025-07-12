@@ -19,8 +19,7 @@ import com.wl4g.gateway.metrics.GatewayPlusMetricsFacade.MetricsName;
  * 
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @date 2021-09-03 v1.0.0
- * @since v1.0.0
+ * @since v1.0.0 2021-09-03
  * @see {@link com.netflix.loadbalancer.WeightedResponseTimeRule}
  */
 public class LeastTimeCanaryLoadBalancerChooser extends AbstractCanaryLoadBalancerChooser {

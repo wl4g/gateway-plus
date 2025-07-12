@@ -12,8 +12,7 @@ import com.wl4g.gateway.loadbalance.stats.LoadBalancerStats;
  * Grayscale load balancer rule for weight-based random.
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @date 2021-09-03 v1.0.0
- * @since v1.0.0
+ * @since v1.0.0 2021-09-03
  */
 public class WeightRandomCanaryLoadBalancerChooser extends RandomCanaryLoadBalancerChooser {
 

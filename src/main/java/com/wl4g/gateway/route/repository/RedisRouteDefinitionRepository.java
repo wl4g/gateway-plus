@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 ~ 2025 the original authors James Wong.
+ * Copyright 2017 ~ 2035 the original authors James Wong.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import reactor.core.publisher.Mono;
  * Redis routes information persistence class This class contains route
  * persistence and route refresh of distributed cluster.
  *
- * @author James Wong<jamewong1376@gmail.com>
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @version v1.0 2020-07-21
  * @since
  */

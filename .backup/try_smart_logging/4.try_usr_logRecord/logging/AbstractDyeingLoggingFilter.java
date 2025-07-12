@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 ~ 2025 the original authors James Wong.
+ * Copyright 2017 ~ 2035 the original authors James Wong.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,8 +67,7 @@ import reactor.core.publisher.Mono;
  * {@link AbstractDyeingLoggingFilter}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @date 2021-09-02 v1.0.0
- * @since v1.0.0
+ * @since v1.0.0 2021-09-02
  */
 @Slf4j
 public abstract class AbstractDyeingLoggingFilter implements GlobalFilter, Ordered {
@@ -274,10 +273,10 @@ public abstract class AbstractDyeingLoggingFilter implements GlobalFilter, Order
         }
     });
 
-    public static final String LOG_REQUEST_BEGIN = LINE_SEPARATOR + "--- <Escg Request> -------" + LINE_SEPARATOR;
+    public static final String LOG_REQUEST_BEGIN = LINE_SEPARATOR + "--- <GWP Request> -------" + LINE_SEPARATOR;
     public static final String LOG_REQUEST_BODY = LINE_SEPARATOR + "\\r\\n" + LINE_SEPARATOR + "{}";
     public static final String LOG_REQUEST_END = LINE_SEPARATOR + "EOF" + LINE_SEPARATOR;
-    public static final String LOG_RESPONSE_BEGIN = LINE_SEPARATOR + "--- <Escg Response> ------" + LINE_SEPARATOR;
+    public static final String LOG_RESPONSE_BEGIN = LINE_SEPARATOR + "--- <GWP Response> ------" + LINE_SEPARATOR;
     public static final String LOG_RESPONSE_BODY = LINE_SEPARATOR + "\\r\\n" + LINE_SEPARATOR + "{}";
     public static final String LOG_RESPONSE_END = LINE_SEPARATOR + "EOF" + LINE_SEPARATOR;
     public static final String VAR_ROUTE_ID = "routeId";

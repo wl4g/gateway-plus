@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 ~ 2025 the original authors James Wong.
+ * Copyright 2017 ~ 2035 the original authors James Wong.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,8 +45,7 @@ import lombok.ToString;
  * {@link PlusRequestLimiterProperties}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @date 2021-10-13 v1.0.0
- * @since v1.0.0
+ * @since v1.0.0 2021-10-13
  */
 @Getter
 @Setter
@@ -227,32 +226,32 @@ public class PlusRequestLimiterProperties {
             /**
              * Burst Capacity header name.
              */
-            public static final String RATE_BURST_CAPACITY_HEADER = "X-Escg-RateLimit-Burst-Capacity";
+            public static final String RATE_BURST_CAPACITY_HEADER = "X-GWP-RateLimit-Burst-Capacity";
 
             /**
              * Replenish Rate Limit header name.
              */
-            public static final String RATE_REPLENISH_RATE_HEADER = "X-Escg-RateLimit-Replenish-Rate";
+            public static final String RATE_REPLENISH_RATE_HEADER = "X-GWP-RateLimit-Replenish-Rate";
 
             /**
              * Requested Tokens header name.
              */
-            public static final String RATE_REQUESTED_TOKENS_HEADER = "X-Escg-RateLimit-Requested-Tokens";
+            public static final String RATE_REQUESTED_TOKENS_HEADER = "X-GWP-RateLimit-Requested-Tokens";
 
             /**
              * Remaining Rate Limit header name.
              */
-            public static final String RATE_REMAINING_HEADER = "X-Escg-RateLimit-Remaining";
+            public static final String RATE_REMAINING_HEADER = "X-GWP-RateLimit-Remaining";
 
             /**
              * The limit key Rate Limit header name.
              */
-            public static final String RATE_LIMITKEY_HEADER = "X-Escg-RateLimit-LimitKey";
+            public static final String RATE_LIMITKEY_HEADER = "X-GWP-RateLimit-LimitKey";
 
             /**
              * The name of the deny header that empty key got obtained.
              */
-            public static final String RATE_DENY_EMPTYKEY_HEADER = "X-Escg-RateLimit-Deny-EmptyKey";
+            public static final String RATE_DENY_EMPTYKEY_HEADER = "X-GWP-RateLimit-Deny-EmptyKey";
         }
 
         /**
@@ -302,28 +301,28 @@ public class PlusRequestLimiterProperties {
             /**
              * Request capacity header name.
              */
-            public static final String QUOTA_REQUEST_CAPACITY_HEADER = "X-Escg-QuotaLimit-Request-Capacity";
+            public static final String QUOTA_REQUEST_CAPACITY_HEADER = "X-GWP-QuotaLimit-Request-Capacity";
 
             /**
              * Remaining Rate Limit header name.
              */
-            public static final String QUOTA_REMAINING_HEADER = "X-Escg-QuotaLimit-Remaining";
+            public static final String QUOTA_REMAINING_HEADER = "X-GWP-QuotaLimit-Remaining";
 
             /**
              * The limit key Rate Limit header name.
              */
-            public static final String QUOTA_LIMITKEY_HEADER = "X-Escg-QuotaLimit-LimitKey";
+            public static final String QUOTA_LIMITKEY_HEADER = "X-GWP-QuotaLimit-LimitKey";
 
             /**
              * The name of the header that returns the time cycle pattern of the
              * request limiting.
              */
-            public static final String QUOTA_CYCLE_HEADER = "X-Escg-QuotaLimit-Cycle";
+            public static final String QUOTA_CYCLE_HEADER = "X-GWP-QuotaLimit-Cycle";
 
             /**
              * The name of the deny header that empty key got obtained.
              */
-            public static final String QUOTA_DENY_EMPTYKEY_HEADER = "X-Escg-QuotaLimit-Deny-EmptyKey";
+            public static final String QUOTA_DENY_EMPTYKEY_HEADER = "X-GWP-QuotaLimit-Deny-EmptyKey";
         }
 
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 ~ 2025 the original authors James Wong.
+ * Copyright 2017 ~ 2035 the original authors James Wong.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import com.wl4g.infra.common.lang.EnvironmentUtil;
 /**
  * IAM for gateway constants.
  * 
- * @author James Wong<jamewong1376@gmail.com>
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @version v1.0
  * @date 2018年11月13日
  * @since

@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 ~ 2025 the original authors James Wong.
+ * Copyright 2017 ~ 2035 the original authors James Wong.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.wl4g.gateway.route;
 import static com.wl4g.infra.common.log.SmartLoggerFactory.getLogger;
 import static java.lang.String.format;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.actuate.GatewayControllerEndpoint;
 import org.springframework.cloud.gateway.event.RefreshRoutesEvent;
@@ -29,7 +30,7 @@ import com.wl4g.infra.common.log.SmartLogger;
 /**
  * {@link RefreshRouteApplicationListener}
  *
- * @author James Wong<jamewong1376@gmail.com>
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @version v1.0 2020-07-21
  * @since
  */
@@ -39,14 +40,14 @@ public class RefreshRouteApplicationListener implements ApplicationListener<Refr
     private @Autowired ApplicationContext applicationContext;
 
     @Override
-    public void onApplicationEvent(RefreshRoutesEvent event) {
+    public void onApplicationEvent(@NotNull RefreshRoutesEvent event) {
         try {
-            log.info(format("Routes refresh :: %s", event.getSource().toString()));
+            log.info("Routes refresh :: {}", event.getSource().toString());
             if (event.getSource() instanceof GatewayControllerEndpoint || RefreshType.PERMANENT.equals(event.getSource())) {
                 applicationContext.getBean(IRouteCacheRefresher.class).refreshRoutes();
             }
         } catch (Exception e) {
-            log.warn("", e);
+            log.warn("Failed to refresh routes.", e);
         }
     }
 

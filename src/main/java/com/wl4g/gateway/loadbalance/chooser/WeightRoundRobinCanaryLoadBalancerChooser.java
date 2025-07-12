@@ -12,8 +12,7 @@ import com.wl4g.gateway.loadbalance.stats.LoadBalancerStats;
  * Grayscale load balancer rule for weight-based round-Robin.
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @date 2021-09-03 v1.0.0
- * @since v1.0.0
+ * @since v1.0.0 2021-09-03
  * @see {@link org.springframework.cloud.loadbalancer.core.RoundRobinLoadBalancer}
  */
 public class WeightRoundRobinCanaryLoadBalancerChooser extends RoundRobinCanaryLoadBalancerChooser {

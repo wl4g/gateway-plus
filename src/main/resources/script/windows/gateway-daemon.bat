@@ -1,7 +1,7 @@
 @echo off
 
 rem /*
-rem  * Copyright 2017 ~ 2025 the original author or authors. <Wanglsir@gmail.com>
+rem  * Copyright 2017 ~ 2035 the original author or authors. <Wanglsir@gmail.com>
 rem  *
 rem  * Licensed under the Apache License, Version 2.0 (the "License");
 rem  * you may not use this file except in compliance with the License.

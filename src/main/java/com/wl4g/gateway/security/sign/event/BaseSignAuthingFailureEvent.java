@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 ~ 2025 the original authors James Wong.
+ * Copyright 2017 ~ 2035 the original authors James Wong.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.wl4g.gateway.security.sign.event;
 
 import org.springframework.context.ApplicationEvent;
@@ -25,10 +26,9 @@ import lombok.Getter;
 
 /**
  * {@link BaseSignAuthingFailureEvent}
- * 
+ *
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @date 2022-04-18 v1.0.0
- * @since v1.0.0
+ * @since v1.0.0 2022-04-18
  */
 @Getter
 public class BaseSignAuthingFailureEvent extends ApplicationEvent {
@@ -38,16 +38,16 @@ public class BaseSignAuthingFailureEvent extends ApplicationEvent {
     private final SignAlgorithm algorithm;
     private final SignHashingMode mode;
     private final String routeId;
-    private final String requsetPath;
+    private final String requestPath;
 
     public BaseSignAuthingFailureEvent(String appId, AppIdExtractor extractor, SignAlgorithm algorithm, SignHashingMode mode,
-            String routeId, String requsetPath) {
+                                       String routeId, String requestPath) {
         super(appId);
         this.extractor = extractor;
         this.algorithm = algorithm;
         this.mode = mode;
         this.routeId = routeId;
-        this.requsetPath = requsetPath;
+        this.requestPath = requestPath;
     }
 
 }

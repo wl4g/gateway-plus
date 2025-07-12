@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 ~ 2025 the original authors James Wong.
+ * Copyright 2017 ~ 2035 the original authors James Wong.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.wl4g.gateway.config;
 
 import org.springframework.context.annotation.Bean;
@@ -43,19 +44,20 @@ import com.wl4g.gateway.traffic.config.TrafficAutoConfiguration;
 import reactor.core.publisher.Mono;
 
 /**
- * IAM gateway auto configuration.
+ * IAM gateway autoconfiguration.
+ * <p>
+ * {@link org.springframework.cloud.gateway.config.GatewayAutoConfiguration}
  *
- * @author James Wong<jamewong1376@gmail.com>
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @version v1.0 2018年9月16日
- * @since
- * @see {@link org.springframework.cloud.gateway.config.GatewayAutoConfiguration}
+ * @since v1.0
  */
 @Configuration(proxyBeanMethods = false)
-@Import({ GatewayWebServerAutoConfiguration.class, IpFilterAutoConfiguration.class, PlusRequestSizeAutoConfiguration.class,
+@Import({GatewayWebServerAutoConfiguration.class, IpFilterAutoConfiguration.class, PlusRequestSizeAutoConfiguration.class,
         PlusRequestLimiterAutoConfiguration.class, PlusCircuitBreakerAutoConfiguration.class, RouteAutoConfiguration.class,
         CanaryLoadbalanceAutoConfiguration.class, PlusSecurityAutoConfiguration.class, GrayTraceAutoConfiguration.class,
         LoggingAutoConfiguration.class, GatewayPlusMetricsAutoConfiguration.class, FaultAutoConfiguration.class,
-        PlusRetryAutoConfiguration.class, TrafficAutoConfiguration.class, ResponseCacheAutoConfiguration.class })
+        PlusRetryAutoConfiguration.class, TrafficAutoConfiguration.class, ResponseCacheAutoConfiguration.class})
 public class GatewayPlusAutoConfiguration {
 
     @Bean

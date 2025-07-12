@@ -23,8 +23,7 @@ import reactor.core.publisher.Mono;
  * {@link ResponseCache}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @date 2022-05-12 v1.0.0
- * @since v1.0.0
+ * @since v1.0.0 2022-05-12
  */
 public interface ResponseCache {
 

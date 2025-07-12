@@ -1,7 +1,7 @@
 package com.wl4g.iam.gateway.bridge;
 
 /*
- * Copyright 2017 ~ 2025 the original author or authors. <jameswong1376@gmail.com,
+ * Copyright 2017 ~ 2035 the original author or authors. <jameswong1376@gmail.com,
  * 983708408@qq.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not

@@ -22,7 +22,7 @@ import static org.apache.commons.lang3.StringUtils.isAnyEmpty;
 /**
  * {@link WebfluxBridgingServletFilter}
  *
- * @author James Wong<jamewong1376@gmail.com>
+ * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @author vjay
  * @version v1.0 2020-07-04
  * @since

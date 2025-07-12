@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 ~ 2025 the original authors James Wong.
+ * Copyright 2017 ~ 2035 the original authors James Wong.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,8 +28,7 @@ import lombok.ToString;
  * {@link DyeingLoggingProperties}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @date 2021-09-02 v1.0.0
- * @since v1.0.0
+ * @since v1.0.0 2021-09-02
  */
 @Getter
 @Setter
@@ -58,14 +57,14 @@ public class DyeingLoggingProperties {
      * only for the current request, This value takes precedence over
      * {@link #defaultVerboseLevel}
      */
-    private String verboseLevelRequestHeader = "X-Escg-Log-Level";
+    private String verboseLevelRequestHeader = "X-GWP-Log-Level";
 
     /**
      * Set the status header name of the dyed log request, which is used to
      * notify the back-end services to enable log printing for the current
      * request.
      */
-    private String setDyeingLogStateRequestHeader = "X-Escg-Log-Dyeing-State";
+    private String setDyeingLogStateRequestHeader = "X-GWP-Log-Dyeing-State";
 
     /**
      * In order to prevent the request body data from being too large, only the
