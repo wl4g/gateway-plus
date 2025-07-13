@@ -45,7 +45,7 @@ import lombok.ToString;
  * {@link PlusRequestLimiterProperties}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-10-13
+ * @since v1.0 2021-10-13
  */
 @Getter
 @Setter

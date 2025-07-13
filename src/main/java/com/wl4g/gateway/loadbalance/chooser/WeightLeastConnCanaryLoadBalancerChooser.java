@@ -16,7 +16,7 @@ import com.wl4g.gateway.loadbalance.stats.LoadBalancerStats;
  * value is, the higher the priority is to assign requests.
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-03
+ * @since v1.0 2021-09-03
  */
 public class WeightLeastConnCanaryLoadBalancerChooser extends LeastConnCanaryLoadBalancerChooser {
 

@@ -26,7 +26,7 @@ import com.wl4g.iam.gateway.loadbalance.stats.LoadBalancerStats.ServiceInstanceS
  * {@link CanaryLoadBalancerRuleChain}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-15
+ * @since v1.0 2022-04-15
  */
 public interface CanaryLoadBalancerRuleChain {
 

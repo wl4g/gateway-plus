@@ -35,7 +35,7 @@ import com.wl4g.gateway.loadbalance.stats.LoadBalancerStats.RouteServiceStatus;
  * {@link InMemoryLoadBalancerRegistry}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-15
+ * @since v1.0 2021-09-15
  */
 public class InMemoryLoadBalancerRegistry implements LoadBalancerRegistry {
 

@@ -55,7 +55,7 @@ import reactor.core.publisher.Mono;
  * {@link ResponseDyeingLoggingFilter}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-02
+ * @since v1.0 2021-09-02
  */
 @Slf4j
 public class ResponseDyeingLoggingFilter extends AbstractDyeingLoggingFilter {

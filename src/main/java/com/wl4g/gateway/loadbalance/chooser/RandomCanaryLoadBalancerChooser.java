@@ -18,7 +18,7 @@ import com.wl4g.gateway.metrics.GatewayPlusMetricsFacade.MetricsName;
  * Random Grayscale Load Balancer chooser based on random.
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-03
+ * @since v1.0 2021-09-03
  */
 public class RandomCanaryLoadBalancerChooser extends AbstractCanaryLoadBalancerChooser {
 

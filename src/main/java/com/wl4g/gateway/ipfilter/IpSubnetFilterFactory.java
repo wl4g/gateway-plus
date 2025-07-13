@@ -59,7 +59,7 @@ import reactor.core.publisher.Mono;
  * {@link IpSubnetFilterFactory}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-05-05
+ * @since v1.0 2022-05-05
  * @see {@link io.netty.handler.ipfilter.IpSubnetFilterRule}
  */
 public class IpSubnetFilterFactory extends AbstractGatewayFilterFactory<IpSubnetFilterFactory.Config> {

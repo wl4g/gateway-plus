@@ -63,7 +63,7 @@ import reactor.core.publisher.Mono;
  * {@link PlusRequestLimiterAutoConfiguration}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-10-13
+ * @since v1.0 2021-10-13
  */
 @Slf4j
 public class PlusRequestLimiterAutoConfiguration {

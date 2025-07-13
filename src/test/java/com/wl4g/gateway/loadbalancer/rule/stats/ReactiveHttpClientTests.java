@@ -36,7 +36,7 @@ import reactor.netty.http.client.HttpClientResponse;
  * {@link ReactiveHttpClientTests}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-14
+ * @since v1.0 2022-04-14
  */
 public class ReactiveHttpClientTests {
 

@@ -26,7 +26,7 @@ import com.wl4g.gateway.metrics.GatewayPlusMetricsFacade;
  * {@link FaultAutoConfiguration}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-27
+ * @since v1.0 2022-04-27
  */
 public class FaultAutoConfiguration {
 

@@ -21,7 +21,7 @@ import com.wl4g.gateway.requestlimit.key.PlusKeyResolver.KeyResolverStrategy;
  * {@link AbstractPlusKeyResolver}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-20
+ * @since v1.0 2022-04-20
  */
 public abstract class AbstractPlusKeyResolver<C extends KeyResolverStrategy> implements PlusKeyResolver<C> {
 

@@ -32,7 +32,7 @@ import lombok.AllArgsConstructor;
  * {@link DefaultCanaryLoadBalancerRuleChain}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-15
+ * @since v1.0 2022-04-15
  */
 @AllArgsConstructor
 public class DefaultCanaryLoadBalancerRuleChain implements CanaryLoadBalancerRuleChain {

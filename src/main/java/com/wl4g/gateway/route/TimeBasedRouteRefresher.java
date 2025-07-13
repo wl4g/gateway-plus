@@ -35,7 +35,7 @@ import com.wl4g.gateway.route.config.RouteProperties;
  * Gateway configuration refresh scheduler coordinator.
  *
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @version 2019年6月2日
+ * @version 2019/6/2
  * @since v1.0
  */
 public class TimeBasedRouteRefresher extends ApplicationTaskRunner<RunnerProperties>

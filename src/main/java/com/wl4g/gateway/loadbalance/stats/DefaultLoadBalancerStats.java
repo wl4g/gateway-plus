@@ -81,7 +81,7 @@ import reactor.netty.http.client.HttpClient;
  * {@link DefaultLoadBalancerStats}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-13
+ * @since v1.0 2021-09-13
  */
 @Slf4j
 public class DefaultLoadBalancerStats extends ApplicationTaskRunner<RunnerProperties> implements LoadBalancerStats {

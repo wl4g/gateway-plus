@@ -19,7 +19,7 @@ package com.wl4g.gateway.loadbalancer.rule.stats;
  * {@link LoadBalancerStatsTests}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-14
+ * @since v1.0 2022-04-14
  */
 public class LoadBalancerStatsTests {
 

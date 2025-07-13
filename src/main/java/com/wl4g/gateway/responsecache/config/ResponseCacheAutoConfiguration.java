@@ -27,7 +27,7 @@ import com.wl4g.gateway.responsecache.ResponseCacheFilterFactory;
  * {@link ResponseCacheAutoConfiguration}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-05-11
+ * @since v1.0 2022-05-11
  */
 public class ResponseCacheAutoConfiguration {
 

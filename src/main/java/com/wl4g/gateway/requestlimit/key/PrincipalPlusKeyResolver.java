@@ -29,7 +29,7 @@ import reactor.core.publisher.Mono;
  * {@link PrincipalPlusKeyResolver}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-20
+ * @since v1.0 2022-04-20
  * @see {@link org.springframework.cloud.gateway.filter.ratelimit.PrincipalNameKeyResolver}
  */
 public class PrincipalPlusKeyResolver extends AbstractPlusKeyResolver<PrincipalPlusKeyResolver.PrincipalKeyResolverStrategy> {

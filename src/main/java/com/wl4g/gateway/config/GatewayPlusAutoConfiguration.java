@@ -35,7 +35,7 @@ import com.wl4g.gateway.requestsize.config.PlusRequestSizeAutoConfiguration;
 import com.wl4g.gateway.responsecache.config.ResponseCacheAutoConfiguration;
 import com.wl4g.gateway.retry.config.PlusRetryAutoConfiguration;
 import com.wl4g.gateway.route.config.RouteAutoConfiguration;
-import com.wl4g.gateway.security.config.PlusSecurityAutoConfiguration;
+import com.wl4g.gateway.security.config.GatewayPlusSecurityAutoConfiguration;
 import com.wl4g.gateway.server.config.GatewayWebServerAutoConfiguration;
 import com.wl4g.gateway.trace.config.GrayTraceAutoConfiguration;
 //import com.wl4g.gateway.trace.config.GrayTraceAutoConfiguration;
@@ -49,13 +49,13 @@ import reactor.core.publisher.Mono;
  * {@link org.springframework.cloud.gateway.config.GatewayAutoConfiguration}
  *
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @version v1.0 2018年9月16日
+ * @version v1.0 2018/9/16
  * @since v1.0
  */
 @Configuration(proxyBeanMethods = false)
 @Import({GatewayWebServerAutoConfiguration.class, IpFilterAutoConfiguration.class, PlusRequestSizeAutoConfiguration.class,
         PlusRequestLimiterAutoConfiguration.class, PlusCircuitBreakerAutoConfiguration.class, RouteAutoConfiguration.class,
-        CanaryLoadbalanceAutoConfiguration.class, PlusSecurityAutoConfiguration.class, GrayTraceAutoConfiguration.class,
+        CanaryLoadbalanceAutoConfiguration.class, GatewayPlusSecurityAutoConfiguration.class, GrayTraceAutoConfiguration.class,
         LoggingAutoConfiguration.class, GatewayPlusMetricsAutoConfiguration.class, FaultAutoConfiguration.class,
         PlusRetryAutoConfiguration.class, TrafficAutoConfiguration.class, ResponseCacheAutoConfiguration.class})
 public class GatewayPlusAutoConfiguration {

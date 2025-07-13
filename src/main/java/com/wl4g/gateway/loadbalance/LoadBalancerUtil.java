@@ -31,7 +31,7 @@ import com.wl4g.gateway.loadbalance.stats.LoadBalancerStats.Stats;
  * {@link LoadBalancerUtil}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-17
+ * @since v1.0 2022-04-17
  */
 public abstract class LoadBalancerUtil {
 

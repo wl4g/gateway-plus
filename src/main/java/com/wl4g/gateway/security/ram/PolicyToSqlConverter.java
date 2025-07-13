@@ -15,14 +15,14 @@ public class PolicyToSqlConverter {
             Pattern.compile("^arn:[^:]+:[^:]+:[^:]*:[^:]*:[^/]+/(?<resourceId>.+)$");
     private static final Pattern VAR_PATTERN = Pattern.compile("\\$\\{(?<var>[^}]+)}");
 
-    public IamRequestContext.SqlCondition convertToSql(String policy, IamRequestContext.UserContext user) {
+    public RamRequestContext.SqlCondition convertToSql(String policy, RamRequestContext.UserContext user) {
         String resourceIdPattern = parseAndSubstituteResourceId(policy, user);
         Map<String, String> tagFilters = parseAndSubstituteTagConditions(policy, user);
         return buildCondition(resourceIdPattern, tagFilters);
     }
 
     // TODO: add support for multiple resource ids?
-    private String parseAndSubstituteResourceId(String policy, IamRequestContext.UserContext user) {
+    private String parseAndSubstituteResourceId(String policy, RamRequestContext.UserContext user) {
         JsonObject policyJson = JsonParser.parseString(policy).getAsJsonObject();
         JsonElement resourceElement = policyJson.getAsJsonArray("Statement")
                 .get(0).getAsJsonObject()
@@ -50,7 +50,7 @@ public class PolicyToSqlConverter {
     /**
      * Extracts and substitutes variables in tag conditions
      */
-    private Map<String, String> parseAndSubstituteTagConditions(String policy, IamRequestContext.UserContext user) {
+    private Map<String, String> parseAndSubstituteTagConditions(String policy, RamRequestContext.UserContext user) {
         Map<String, String> tags = new HashMap<>();
         JsonObject policyJson = JsonParser.parseString(policy).getAsJsonObject();
 
@@ -73,7 +73,7 @@ public class PolicyToSqlConverter {
     /**
      * Generic variable substitution using reflection
      */
-    private String substituteVariables(String input, IamRequestContext.UserContext user) {
+    private String substituteVariables(String input, RamRequestContext.UserContext user) {
         StringBuilder result = new StringBuilder();
         Matcher matcher = VAR_PATTERN.matcher(input);
 
@@ -90,7 +90,7 @@ public class PolicyToSqlConverter {
     /**
      * Builds the final SQL condition with parameterized queries
      */
-    private IamRequestContext.SqlCondition buildCondition(String resourceIdPattern, Map<String, String> tagFilters) {
+    private RamRequestContext.SqlCondition buildCondition(String resourceIdPattern, Map<String, String> tagFilters) {
         List<Object> params = new ArrayList<>();
         StringBuilder clause = new StringBuilder("resource_id LIKE ?");
         params.add(resourceIdPattern);
@@ -100,13 +100,13 @@ public class PolicyToSqlConverter {
             params.add(new Gson().toJson(tagFilters));
         }
 
-        return new IamRequestContext.SqlCondition(clause.toString(), params);
+        return new RamRequestContext.SqlCondition(clause.toString(), params);
     }
 
     /**
      * Gets property value dynamically using reflection
      */
-    private String getPropertyValue(IamRequestContext.UserContext user, String propertyPath) {
+    private String getPropertyValue(RamRequestContext.UserContext user, String propertyPath) {
         try {
             Object current = user;
             for (String part : propertyPath.split("\\.")) {

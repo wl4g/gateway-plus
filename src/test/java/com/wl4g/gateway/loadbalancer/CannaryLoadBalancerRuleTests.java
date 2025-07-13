@@ -34,7 +34,7 @@ import com.wl4g.gateway.loadbalance.stats.LoadBalancerStats;
  * {@link CannaryLoadBalancerRuleTests}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-13
+ * @since v1.0 2022-04-13
  */
 public class CannaryLoadBalancerRuleTests {
 

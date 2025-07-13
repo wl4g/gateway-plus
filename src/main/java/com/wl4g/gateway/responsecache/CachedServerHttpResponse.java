@@ -41,7 +41,7 @@ import org.springframework.util.MimeType;
  * {@link CachedServerHttpResponse}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-05-13
+ * @since v1.0 2022-05-13
  * @see {@link org.springframework.mock.http.server.reactive.MockServerHttpResponse}
  */
 public class CachedServerHttpResponse extends AbstractServerHttpResponse {

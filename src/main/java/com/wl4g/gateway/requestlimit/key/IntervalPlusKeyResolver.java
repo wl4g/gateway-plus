@@ -32,7 +32,7 @@ import reactor.core.publisher.Mono;
  * {@link IntervalPlusKeyResolver}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-30
+ * @since v1.0 2021-09-30
  */
 public class IntervalPlusKeyResolver extends AbstractPlusKeyResolver<IntervalPlusKeyResolver.IntervalKeyResolverStrategy> {
 

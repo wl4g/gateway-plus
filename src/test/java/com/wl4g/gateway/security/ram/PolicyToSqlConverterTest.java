@@ -10,7 +10,7 @@ public class PolicyToSqlConverterTest {
     @Test
     public void testPolicyToSqlConversionInBizService() {
         // 1. 创建策略转换器实例
-        IamRequestContext.SqlCondition condition = getSqlCondition(
+        RamRequestContext.SqlCondition condition = getSqlCondition(
                 "{" +
                         "    \"Statement\": [{" +
                         "        \"Effect\": \"Allow\"," +
@@ -53,11 +53,11 @@ public class PolicyToSqlConverterTest {
         */
     }
 
-    private static IamRequestContext.SqlCondition getSqlCondition(String policyJson) {
+    private static RamRequestContext.SqlCondition getSqlCondition(String policyJson) {
         PolicyToSqlConverter converter = new PolicyToSqlConverter();
 
         // 1. 准备用户上下文
-        IamRequestContext.UserContext user = new IamRequestContext.UserContext() {
+        RamRequestContext.UserContext user = new RamRequestContext.UserContext() {
             @Override
             public String getUid() {
                 return "user123";
@@ -75,7 +75,7 @@ public class PolicyToSqlConverterTest {
 
     @Test
     public void testResourceArrayPolicyInBizService() {
-        IamRequestContext.SqlCondition condition = getSqlCondition(
+        RamRequestContext.SqlCondition condition = getSqlCondition(
                 "{" +
                         "    \"Statement\": [{" +
                         "        \"Effect\": \"Allow\"," +

@@ -30,7 +30,7 @@ import com.wl4g.infra.common.log.SmartLogger;
  * {@link AbstractRedisPlusRequestLimiter}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-21
+ * @since v1.0 2022-04-21
  */
 public abstract class AbstractRedisPlusRequestLimiter<S extends RequestLimiterStrategy> implements PlusRequestLimiter {
     protected final SmartLogger log = getLogger(getClass());

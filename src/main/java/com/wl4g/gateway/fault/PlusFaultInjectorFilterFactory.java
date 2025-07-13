@@ -59,7 +59,7 @@ import reactor.core.publisher.Mono;
  * {@link PlusFaultInjectorFilterFactory}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-27
+ * @since v1.0 2022-04-27
  */
 @Slf4j
 public class PlusFaultInjectorFilterFactory extends AbstractGatewayFilterFactory<PlusFaultInjectorFilterFactory.Config> {

@@ -27,7 +27,7 @@ import com.wl4g.gateway.logging.ResponseLoggingGlobalFilter;
  * {@link LoggingMessageAutoConfiguration}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-03
+ * @since v1.0 2021-09-03
  */
 public class LoggingAutoConfiguration {
 

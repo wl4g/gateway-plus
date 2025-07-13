@@ -18,7 +18,7 @@ import com.wl4g.gateway.metrics.GatewayPlusMetricsFacade.MetricsName;
  * Round-Robin Grayscale Load Balancer chooser based on random.
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-03
+ * @since v1.0 2021-09-03
  * @see {@link org.springframework.cloud.loadbalancer.core.RoundRobinLoadBalancer}
  * @see {@link com.netflix.loadbalancer.RoundRobinRule}
  */

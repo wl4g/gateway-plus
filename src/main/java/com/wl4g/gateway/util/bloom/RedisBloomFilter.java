@@ -79,7 +79,7 @@ import com.wl4g.infra.common.log.SmartLogger;
  * </p>
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-05
+ * @since v1.0 2021-09-05
  */
 public class RedisBloomFilter<T> {
 

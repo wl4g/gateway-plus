@@ -61,7 +61,7 @@ import lombok.extern.slf4j.Slf4j;
  * {@link GatewayPlusMetricsFacade}
  *
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-16
+ * @since v1.0 2022-04-16
  */
 @Slf4j
 @Getter
@@ -282,122 +282,122 @@ public class GatewayPlusMetricsFacade implements InitializingBean {
         // Simple signature authorizer.
         //
 
-        SIMPLE_SIGN_BLOOM_SUCCESS_TOTAL("gw_simple_sign_bloom_success_total",
+        SIMPLE_SIGN_BLOOM_SUCCESS_TOTAL("gwp_simple_sign_bloom_success_total",
                 "The total number of success bloom validate for simple signature authenticator"),
 
-        SIMPLE_SIGN_BLOOM_FAIL_TOTAL("gw_simple_sign_bloom_fail_total",
+        SIMPLE_SIGN_BLOOM_FAIL_TOTAL("gwp_simple_sign_bloom_fail_total",
                 "The total number of failed bloom validate for simple signature authenticator"),
 
-        SIMPLE_SIGN_SUCCCESS_TOTAL("gw_simple_sign_success_total",
+        SIMPLE_SIGN_SUCCCESS_TOTAL("gwp_simple_sign_success_total",
                 "The total number of successful authentication by the simple signature authenticator"),
 
-        SIMPLE_SIGN_FAIL_TOTAL("gw_simple_sign_fail_total",
+        SIMPLE_SIGN_FAIL_TOTAL("gwp_simple_sign_fail_total",
                 "The total number of failure authentication by the simple sign authenticator"),
 
-        SIMPLE_SIGN_TIME("gw_simple_sign_time", "The number of simple signature execution cost time"),
+        SIMPLE_SIGN_TIME("gwp_simple_sign_time", "The number of simple signature execution cost time"),
 
         //
         // Canary LoadBalacner.
         //
 
         // current instance status.
-        CANARY_LB_STATS_CURRENT_INSTANCE("gw_canary_lb_stats_current_instance",
+        CANARY_LB_STATS_CURRENT_INSTANCE("gwp_canary_lb_stats_current_instance",
                 "The current state instance of the canary load balancer statistic"),
 
-        CANARY_LB_STATS_CURRENT_INSTANCE_CONNECTIONS("gw_canary_lb_stats_current_instance_connections",
+        CANARY_LB_STATS_CURRENT_INSTANCE_CONNECTIONS("gwp_canary_lb_stats_current_instance_connections",
                 "The number of instance connections of the canary load balancer statistic"),
 
         // chooser statistic
 
-        CANARY_LB_CHOOSE_TOTAL("gw_canary_lb_choose_total",
+        CANARY_LB_CHOOSE_TOTAL("gwp_canary_lb_choose_total",
                 "The total number of instances selected by the canary LoadBalancer"),
 
-        CANARY_LB_CHOOSE_FALLBACK_TOTAL("gw_canary_lb_choose_fallback_total",
+        CANARY_LB_CHOOSE_FALLBACK_TOTAL("gwp_canary_lb_choose_fallback_total",
                 "The total number of times that Canary LoadBalancer chose to fallback on instances"),
 
-        CANARY_LB_CHOOSE_MISSING_TOTAL("gw_canary_lb_choose_missing_total", "Total number of canary load balancing misses"),
+        CANARY_LB_CHOOSE_MISSING_TOTAL("gwp_canary_lb_choose_missing_total", "Total number of canary load balancing misses"),
 
-        CANARY_LB_CHOOSE_MAX_TRIES_TOTAL("gw_canary_lb_choose_max_tries_total",
+        CANARY_LB_CHOOSE_MAX_TRIES_TOTAL("gwp_canary_lb_choose_max_tries_total",
                 "The total number of times the canary load balancer selects a reachable instance to retry"),
 
-        CANARY_LB_CHOOSE_EMPTY_INSTANCES_TOTAL("gw_canary_lb_choose_empty_instances_total",
+        CANARY_LB_CHOOSE_EMPTY_INSTANCES_TOTAL("gwp_canary_lb_choose_empty_instances_total",
                 "The total number of times the available instances was not found by canary load balancer"),
 
         // active probe statistic.
 
-        CANARY_LB_STATS_TOTAL("gw_canary_lb_stats_total", "The total number of active probes of the canary load balancer"),
+        CANARY_LB_STATS_TOTAL("gwp_canary_lb_stats_total", "The total number of active probes of the canary load balancer"),
 
-        CANARY_LB_STATS_TIMEOUT_TOTAL("gw_canary_lb_stats_timeout_total",
+        CANARY_LB_STATS_TIMEOUT_TOTAL("gwp_canary_lb_stats_timeout_total",
                 "The total number of active probe timeouts of the canary load balancing statistic"),
 
-        CANARY_LB_STATS_CANCEL_ERROR_TOTAL("gw_canary_lb_stats_cancel_error_total",
+        CANARY_LB_STATS_CANCEL_ERROR_TOTAL("gwp_canary_lb_stats_cancel_error_total",
                 "The total number of active probe cancel or error of the canary load balancing statistic"),
 
         // passive probe statistic.
 
-        CANARY_LB_STATS_CONNECT_OPEN_TOTAL("gw_canary_lb_stats_connect_open_total",
+        CANARY_LB_STATS_CONNECT_OPEN_TOTAL("gwp_canary_lb_stats_connect_open_total",
                 "The total number of connections opened by the canary load balancer passive probe"),
 
-        CANARY_LB_STATS_CONNECT_CLOSE_TOTAL("gw_canary_lb_stats_connect_close_total",
+        CANARY_LB_STATS_CONNECT_CLOSE_TOTAL("gwp_canary_lb_stats_connect_close_total",
                 "The total number of connections closed by the canary load balancer passive probe"),
 
-        CANARY_LB_STATS_REGISTER_ALL_SERVICES_TOTAL("gw_canary_lb_stats_register_all_services_total",
+        CANARY_LB_STATS_REGISTER_ALL_SERVICES_TOTAL("gwp_canary_lb_stats_register_all_services_total",
                 "The total number of times the canary load balancer stats is updated and registered according to the router service instance"),
 
-        CANARY_LB_STATS_RESTART_PROBE_TASK_TOTAL("gw_canary_lb_stats_restart_probe_task_total",
+        CANARY_LB_STATS_RESTART_PROBE_TASK_TOTAL("gwp_canary_lb_stats_restart_probe_task_total",
                 "The total number of detection tasks based on router update or restart canary load balancer"),
 
-        CANARY_LB_STATS_RESTART_PROBE_TASK_FAIL_TOTAL("gw_canary_lb_stats_restart_probe_task_fail_total",
+        CANARY_LB_STATS_RESTART_PROBE_TASK_FAIL_TOTAL("gwp_canary_lb_stats_restart_probe_task_fail_total",
                 "The total number of detection tasks based on router update or restart canary load balancer"),
 
-        CANARY_LB_STATS_INSTANCE_STATE_CHANGED_TOTAL("gw_canary_lb_stats_instance_state_changed_total",
+        CANARY_LB_STATS_INSTANCE_STATE_CHANGED_TOTAL("gwp_canary_lb_stats_instance_state_changed_total",
                 "The total number of failed restart or update loadbalancer probe tasks"),
 
-        CANARY_LB_CHOOSE_TIME("gw_canary_lb_choose_time", "The number of canary loadbalancer choose cost time"),
+        CANARY_LB_CHOOSE_TIME("gwp_canary_lb_choose_time", "The number of canary loadbalancer choose cost time"),
 
         //
         // Request limiter.
         //
 
-        REDIS_RATELIMIT_TOTAL("gw_redis_ratelimit_total", "The number of total processing in the redis rate limiter"),
+        REDIS_RATELIMIT_TOTAL("gwp_redis_ratelimit_total", "The number of total processing in the redis rate limiter"),
 
-        REDIS_RATELIMIT_HITS_TOTAL("gw_redis_ratelimit_hits_total", "The number of total hits in the redis rate limiter"),
+        REDIS_RATELIMIT_HITS_TOTAL("gwp_redis_ratelimit_hits_total", "The number of total hits in the redis rate limiter"),
 
-        REDIS_RATELIMIT_TIME("gw_redis_ratelimit_time", "The number of redis ratelimit cost time"),
+        REDIS_RATELIMIT_TIME("gwp_redis_ratelimit_time", "The number of redis ratelimit cost time"),
 
-        REDIS_QUOTALIMIT_TOTAL("gw_redis_quotalimit_total", "The number of total processing in the redis quota limiter"),
+        REDIS_QUOTALIMIT_TOTAL("gwp_redis_quotalimit_total", "The number of total processing in the redis quota limiter"),
 
-        REDIS_QUOTALIMIT_HITS_TOTAL("gw_redis_quotalimit_hits_total", "The number of total hits in the redis quota limiter"),
+        REDIS_QUOTALIMIT_HITS_TOTAL("gwp_redis_quotalimit_hits_total", "The number of total hits in the redis quota limiter"),
 
-        REDIS_QUOTALIMIT_TIME("gw_redis_quotalimit_time", "The number of redis quota limit cost time"),
+        REDIS_QUOTALIMIT_TIME("gwp_redis_quotalimit_time", "The number of redis quota limit cost time"),
 
         //
         // Response cache.
         //
 
-        RESPONSE_CACHE_TOTAL("gw_responsecache_total", "The number of total processing in the response cache"),
+        RESPONSE_CACHE_TOTAL("gwp_responsecache_total", "The number of total processing in the response cache"),
 
-        RESPONSE_CACHE_HITS_TOTAL("gw_responsecache_hits_total", "The number of total hits in the response cache"),
+        RESPONSE_CACHE_HITS_TOTAL("gwp_responsecache_hits_total", "The number of total hits in the response cache"),
 
         //
         // IpFilter.
         //
 
-        IPFILTER_TOTAL("gw_ipfilter_total", "The number of total processing in the ipfilter"),
+        IPFILTER_TOTAL("gwp_ipfilter_total", "The number of total processing in the ipfilter"),
 
-        IPFILTER_HITS_TOTAL("gw_ipfilter_hits_total", "The number of total hits in the ipfilter"),
+        IPFILTER_HITS_TOTAL("gwp_ipfilter_hits_total", "The number of total hits in the ipfilter"),
 
         //
         // Fault.
         //
 
-        FAULT_TOTAL("gw_fault_total", "The number of total processing in the fault injected"),
+        FAULT_TOTAL("gwp_fault_total", "The number of total processing in the fault injected"),
 
         //
         // Traffic.
         //
 
-        TRAFFIC_REPLICATION_TOTAL("gw_traffic_replication_total", "The number of total processing in the traffic replication");
+        TRAFFIC_REPLICATION_TOTAL("gwp_traffic_replication_total", "The number of total processing in the traffic replication");
 
         private final String name;
         private final String help;

@@ -289,7 +289,7 @@ spring:
           allow-renegociate: true # Default by true
     route:
       # Enabled to https to http forward filter.
-      forwaredHttpsToHttp: true # Default by true
+      forward-https-to-http: true # Default by true
       refresh-delay-ms: 30_000 # Default by 30_000
     ipfilter:
       defaultStrategy:
@@ -381,6 +381,27 @@ spring:
             failureCumulatorPrefix: gateway:auth:sign:event:failure
             # Redis event recorder accumulator suffix of date format pattern.
             cumulatorSuffixOfDatePattern: yyMMdd
+      simpleUserPolicies:
+        # The example static user policies.
+        userPolicies:
+          - uid: u101
+            gid: g101
+            statements:
+              - effect: Deny
+                action: "workflow-service:list"
+                resource: "urn:std:workflow-service:us-west-1:10010109:job/sys-*"
+                condition: {}
+              - effect: Allow
+                action: "workflow-service:list"
+                resource: "urn:std:workflow-service:us-west-1:10010109:job/*"
+                condition:
+                  StringEquals:
+                    "ResourceTag/own": "${uid}"
+                    "ResourceTag/env": "prod"
+                  IpAddress:
+                    Ipv4: "192.168.0.0/16"
+                  TimeLessThan:
+                    "$create_at": "${time.day} - 3"
     trace:
       enabled: true # Default by true
       # Prefer to enable tracing samples match SPEL match expression. Default by '#{true}', which means never no match.
@@ -489,7 +510,7 @@ spring:
         - name: defaultLogQuery
           query:
             symbol: IGNORECASE_EQ
-            key: __gw_log
+            key: __gwp_log
             value: y
         - name: energyOpenApiLogWithPath
           path: '/openapi/**'
@@ -721,7 +742,7 @@ spring:
         - name: v1-canary-query
           query:
             symbol: EQ
-            key: __gw_canary
+            key: __gwp_canary
             value: v1
       # The number of load balancer statistician scheduler worker threads.
       statsSchedulerThread: 2 # Default by 2

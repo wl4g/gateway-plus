@@ -13,34 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.wl4g.gateway.security.sign.event;
 
-import static java.lang.String.valueOf;
-
+import com.google.common.eventbus.Subscribe;
+import com.wl4g.gateway.security.config.GatewayPlusSecurityProperties;
+import com.wl4g.gateway.security.config.SimpleSignAuthingProperties.RedisEventRecorderProperties;
+import com.wl4g.infra.common.lang.DateUtils2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
-import com.google.common.eventbus.Subscribe;
-import com.wl4g.gateway.security.config.PlusSecurityProperties;
-import com.wl4g.gateway.security.config.PlusSecurityProperties.RedisEventRecorderProperties;
-import com.wl4g.infra.common.lang.DateUtils2;
-
-import lombok.extern.slf4j.Slf4j;
+import static java.lang.String.valueOf;
 
 /**
  * Redis-based signature authentication event accumulator, usually used in API
  * gateway billing business scenarios.
- * 
+ *
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-18
+ * @since v1.0 2022-04-18
  */
 @Slf4j
 public class DefaultRedisSignAuthingEventRecoder {
     public static final String LOG_SIGN_EVENT_SUCCESS_PREFIX = "SIGN_SUCCESS_EVENT";
     public static final String LOG_SIGN_EVENT_FAILURE_PREFIX = "SIGN_FAILURE_EVENT";
 
-    private @Autowired PlusSecurityProperties authingConfig;
+    private @Autowired GatewayPlusSecurityProperties authingConfig;
     private @Autowired StringRedisTemplate redisTemplate;
 
     @Subscribe

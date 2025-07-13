@@ -58,7 +58,7 @@ import reactor.netty.resources.LoopResources;
  * {@link SecureNettyReactiveWebServerFactory}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-10
+ * @since v1.0 2021-09-10
  * @see {@link org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext#createWebServer()}
  * @see {@link org.springframework.boot.web.embedded.netty.NettyReactiveWebServerFactory}
  */

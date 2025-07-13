@@ -35,7 +35,7 @@ import reactor.core.publisher.Mono;
  * {@link Https2HttpGlobalFilter}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-05-11
+ * @since v1.0 2022-05-11
  * @see https://www.jianshu.com/p/5a36129399f2
  */
 @AllArgsConstructor
@@ -50,7 +50,7 @@ public class Https2HttpGlobalFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        if (!routeConfig.isForwaredHttpsToHttp()) {
+        if (!routeConfig.isForwardHttpsToHttp()) {
             return chain.filter(exchange);
         }
         Object uriObj = exchange.getAttributes().get(GATEWAY_REQUEST_URL_ATTR);

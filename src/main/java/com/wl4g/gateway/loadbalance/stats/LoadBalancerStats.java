@@ -46,7 +46,7 @@ import lombok.With;
  * {@link LoadBalancerStats}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-13
+ * @since v1.0 2021-09-13
  */
 public interface LoadBalancerStats {
 

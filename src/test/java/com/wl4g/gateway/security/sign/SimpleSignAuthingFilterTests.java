@@ -38,7 +38,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import com.wl4g.gateway.metrics.GatewayPlusMetricsFacade;
-import com.wl4g.gateway.security.config.PlusSecurityProperties;
+import com.wl4g.gateway.security.config.GatewayPlusSecurityProperties;
 import com.wl4g.gateway.security.sign.SimpleSignAuthingFilterFactory.SignHashingMode;
 import com.wl4g.infra.common.eventbus.EventBusSupport;
 
@@ -46,7 +46,7 @@ import com.wl4g.infra.common.eventbus.EventBusSupport;
  * {@link SimpleSignAuthingFilterTests}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-05
+ * @since v1.0 2022-04-05
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -64,7 +64,7 @@ public class SimpleSignAuthingFilterTests {
 
     @TestConfiguration
     public static class TestEnvParameterSimpleParamsBytesSortedHashingS256Configuration {
-        private @Autowired PlusSecurityProperties authingConfig;
+        private @Autowired GatewayPlusSecurityProperties authingConfig;
         private @Autowired StringRedisTemplate redisTemplate;
         private @Autowired GatewayPlusMetricsFacade metricsFacade;
         private final EventBusSupport eventBus = EventBusSupport.getDefault();
@@ -90,7 +90,7 @@ public class SimpleSignAuthingFilterTests {
                             p -> p.path(TEST_ROUTE_PATH).filters(f -> {
                                 // for Add simple sign filter.
                                 SimpleSignAuthingFilterFactory filter = new SimpleSignAuthingFilterFactory(
-                                        new PlusSecurityProperties(), redisTemplate, metricsFacade, eventBus);
+                                        new GatewayPlusSecurityProperties(), redisTemplate, metricsFacade, eventBus);
                                 SimpleSignAuthingFilterFactory.Config config = new SimpleSignAuthingFilterFactory.Config();
                                 // custom sign parameter name.
                                 config.setSignParam("signature");

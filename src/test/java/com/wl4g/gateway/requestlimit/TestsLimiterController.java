@@ -28,7 +28,7 @@ import com.wl4g.infra.common.lang.FastTimeClock;
  * {@link TestsLimiterController}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-10-12
+ * @since v1.0 2021-10-12
  */
 @RestController
 @RequestMapping("/test/ratelimit")

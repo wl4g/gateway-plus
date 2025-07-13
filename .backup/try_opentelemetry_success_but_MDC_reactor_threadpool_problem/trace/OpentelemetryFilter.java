@@ -61,7 +61,7 @@ import reactor.core.publisher.Mono;
  * {@link org.springframework.cloud.gateway.filter.GatewayFilter}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-02
+ * @since v1.0 2021-09-02
  * @see {@link org.springframework.cloud.sleuth.instrument.web.TraceWebFilter}
  *      from spring-cloud-sleuth-instrumentation-3.1.1.jar
  */

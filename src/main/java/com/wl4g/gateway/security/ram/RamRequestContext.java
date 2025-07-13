@@ -10,7 +10,7 @@ import java.util.Map;
 // TODO: testing
 @Data
 @Builder
-public class IamRequestContext {
+public class RamRequestContext {
     private String action;
     private String resourceUrn;
     private Map<String, String> contextValues;

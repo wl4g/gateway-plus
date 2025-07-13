@@ -23,7 +23,7 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
  * {@link ReactiveByteArrayRedisTemplate}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-05-13
+ * @since v1.0 2022-05-13
  * @see {@link org.springframework.data.redis.core.ReactiveStringRedisTemplate}
  */
 public class ReactiveByteArrayRedisTemplate extends ReactiveRedisTemplate<byte[], byte[]> {

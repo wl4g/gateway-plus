@@ -120,7 +120,7 @@ spring:
                 sign-algorithm: S256 # Default by 'S256', Options(MD5|S1|S256|S384|S512|HMD5|HS1|HS256|HS512)
                 sign-hashing-mode: SimpleParamsBytesSortedHashing # Default by 'UriParamsKeySortedHashing'
                 sign-hashing-include-params: ['*'] # Default by []
-                sign-hashing-exclude-params: ['response_type','__gw_log'] # Default by []
+                sign-hashing-exclude-params: ['response_type','__gwp_log'] # Default by []
                 add-sign-auth-client-id-header: X-Sign-Auth-AppId # Default by 'X-Sign-Auth-AppId'
             ##
             # ------------------------------------------------------
@@ -280,4 +280,3 @@ spring:
                   timeout-ms: 5_000 # Default by 5_000ms
                   path: /healthz # Default by '/healthz'
                   expect-statuses: [200,404] # Default by 200
-

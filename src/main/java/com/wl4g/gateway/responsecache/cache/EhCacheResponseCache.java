@@ -49,7 +49,7 @@ import reactor.core.publisher.Mono;
  * {@link EhCacheResponseCacheTests}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-05-13
+ * @since v1.0 2022-05-13
  */
 @Getter
 @Slf4j

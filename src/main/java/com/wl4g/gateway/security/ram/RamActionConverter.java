@@ -3,7 +3,7 @@ package com.wl4g.gateway.security.ram;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IamActionConverter {
+public class RamActionConverter {
     private static final Map<String, String> HARDCODE_ACTION_MAP;
 
     static {

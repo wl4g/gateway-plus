@@ -64,8 +64,7 @@ import com.google.common.hash.Hashing;
 import com.wl4g.gateway.metrics.GatewayPlusMetricsFacade;
 import com.wl4g.gateway.metrics.GatewayPlusMetricsFacade.MetricsName;
 import com.wl4g.gateway.metrics.GatewayPlusMetricsFacade.MetricsTag;
-import com.wl4g.gateway.security.config.PlusSecurityProperties;
-import com.wl4g.gateway.security.config.PlusSecurityProperties.SecretStore;
+import com.wl4g.gateway.security.config.GatewayPlusSecurityProperties;
 import com.wl4g.gateway.security.sign.event.SignAuthingFailureEvent;
 import com.wl4g.gateway.security.sign.event.SignAuthingSuccessEvent;
 import com.wl4g.gateway.util.IamGatewayUtil;
@@ -111,19 +110,19 @@ import reactor.core.publisher.Mono;
  * </p>
  *
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-01
+ * @since v1.0 2021-09-01
  */
 public class SimpleSignAuthingFilterFactory extends AbstractGatewayFilterFactory<SimpleSignAuthingFilterFactory.Config> {
 
     private final SmartLogger log = getLogger(getClass());
-    private final PlusSecurityProperties authingConfig;
+    private final GatewayPlusSecurityProperties authingConfig;
     private final StringRedisTemplate redisTemplate;
     private final Cache<String, String> secretCacheStore;
     private final GatewayPlusMetricsFacade metricsFacade;
     private final EventBusSupport eventBus;
     private final Map<String, RedisBloomFilter<String>> cachedBloomFilters = new ConcurrentHashMap<>(8);
 
-    public SimpleSignAuthingFilterFactory(@NotNull PlusSecurityProperties authingConfig,
+    public SimpleSignAuthingFilterFactory(@NotNull GatewayPlusSecurityProperties authingConfig,
                                           @NotNull StringRedisTemplate redisTemplate, @NotNull GatewayPlusMetricsFacade metricsFacade,
                                           EventBusSupport eventBus) {
         super(SimpleSignAuthingFilterFactory.Config.class);

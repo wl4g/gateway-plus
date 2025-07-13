@@ -83,7 +83,7 @@ import reactor.netty.http.client.HttpClientResponse;
  * {@link TrafficImageGatewayFactory}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-26
+ * @since v1.0 2022-04-26
  * @see {@link see:org.springframework.cloud.gateway.filter.NettyRoutingFilter}
  */
 @CustomLog

@@ -31,7 +31,7 @@ import reactor.core.publisher.Mono;
  * {@link RedisResponseCache}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-05-12
+ * @since v1.0 2022-05-12
  */
 public class RedisResponseCache implements ResponseCache {
 

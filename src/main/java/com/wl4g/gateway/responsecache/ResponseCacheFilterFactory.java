@@ -84,7 +84,7 @@ import reactor.core.publisher.Mono;
  * {@link ResponseCacheFilterFactory}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-05-11
+ * @since v1.0 2022-05-11
  */
 @Slf4j
 public class ResponseCacheFilterFactory extends AbstractGatewayFilterFactory<ResponseCacheFilterFactory.Config> {

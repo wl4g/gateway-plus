@@ -25,7 +25,7 @@ import com.wl4g.gateway.requestsize.PlusRequestSizeFilterFactory;
  * {@link PlusRequestSizeAutoConfiguration}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-05-16
+ * @since v1.0 2022-05-16
  */
 public class PlusRequestSizeAutoConfiguration {
 

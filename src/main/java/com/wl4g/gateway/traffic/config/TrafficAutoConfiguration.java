@@ -31,7 +31,7 @@ import com.wl4g.gateway.traffic.TrafficReplicationFilterFactory;
  * {@link TrafficAutoConfiguration}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-26
+ * @since v1.0 2022-04-26
  */
 public class TrafficAutoConfiguration {
 

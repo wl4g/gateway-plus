@@ -68,7 +68,7 @@ import io.opentelemetry.instrumentation.api.instrumenter.http.HttpServerAttribut
  * {@link GrayTraceAutoConfiguration}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-02
+ * @since v1.0 2021-09-02
  */
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.REACTIVE)
 public class GrayTraceAutoConfiguration {

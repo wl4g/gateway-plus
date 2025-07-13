@@ -72,7 +72,7 @@ import reactor.core.publisher.Mono;
  * {@link LoggingGlobalFilter}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-02
+ * @since v1.0 2022-04-02
  */
 @Slf4j
 public class LoggingFilter implements GlobalFilter, Ordered {

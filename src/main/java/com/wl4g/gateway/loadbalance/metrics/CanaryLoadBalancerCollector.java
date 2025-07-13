@@ -37,7 +37,7 @@ import io.prometheus.client.GaugeMetricFamily;
  * {@link CanaryLoadBalancerCollector}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-21
+ * @since v1.0 2022-04-21
  * @see {@link org.springframework.boot.actuate.autoconfigure.metrics.export.prometheus.PrometheusMetricsExportAutoConfiguration}
  */
 public class CanaryLoadBalancerCollector extends Collector {

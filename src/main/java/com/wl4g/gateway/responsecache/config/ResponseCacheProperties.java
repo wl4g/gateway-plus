@@ -35,7 +35,7 @@ import lombok.ToString;
  * {@link ResponseCacheProperties}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-05-11
+ * @since v1.0 2022-05-11
  */
 @Getter
 @Setter

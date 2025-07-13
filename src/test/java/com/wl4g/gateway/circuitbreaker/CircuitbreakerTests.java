@@ -33,7 +33,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
  * {@link CircuitbreakerTests}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-05
+ * @since v1.0 2022-04-05
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)

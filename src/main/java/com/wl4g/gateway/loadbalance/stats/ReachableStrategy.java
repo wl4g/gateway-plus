@@ -38,7 +38,7 @@ import com.wl4g.infra.common.log.SmartLogger;
  * Reachable search strategy.
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-15
+ * @since v1.0 2022-04-15
  */
 public interface ReachableStrategy {
 

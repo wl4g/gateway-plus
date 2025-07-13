@@ -62,7 +62,7 @@ import reactor.core.publisher.SignalType;
  * {@link org.springframework.cloud.gateway.handler.FilteringWebHandler.DefaultGatewayFilterChain#filter(ServerWebExchange)}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-03
+ * @since v1.0 2022-04-03
  */
 public class CanaryLoadBalancerClientFilter extends ReactiveLoadBalancerClientFilter {
 

@@ -35,7 +35,7 @@ import reactor.core.publisher.Mono;
  * {@link IpFilterConfigurer}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-05-05
+ * @since v1.0 2022-05-05
  */
 public interface IpFilterConfigurer {
 

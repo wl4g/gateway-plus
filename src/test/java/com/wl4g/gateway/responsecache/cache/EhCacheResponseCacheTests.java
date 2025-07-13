@@ -29,7 +29,7 @@ import reactor.test.StepVerifier;
  * {@link EhCacheResponseCacheTests}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-05-14
+ * @since v1.0 2022-05-14
  */
 public class EhCacheResponseCacheTests {
 

@@ -35,7 +35,7 @@ import lombok.ToString;
  * {@link TrafficProperties}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-26
+ * @since v1.0 2022-04-26
  */
 @Getter
 @Setter

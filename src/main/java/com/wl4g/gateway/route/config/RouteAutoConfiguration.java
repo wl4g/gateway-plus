@@ -31,13 +31,13 @@ import com.wl4g.gateway.route.TimeBasedRouteRefresher;
 //import com.wl4g.gateway.route.ignore.IgnoreGatewayFilterFactory;
 //import com.wl4g.gateway.route.ignore.IgnoreGatewayFilterFactory.IgnoreGatewayFilter;
 import com.wl4g.gateway.route.repository.RedisRouteDefinitionRepository;
-import com.wl4g.gateway.security.config.PlusSecurityAutoConfiguration;
+import com.wl4g.gateway.security.config.GatewayPlusSecurityAutoConfiguration;
 
 /**
- * {@link PlusSecurityAutoConfiguration}
+ * {@link GatewayPlusSecurityAutoConfiguration}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-10-13
+ * @since v1.0 2021-10-13
  */
 public class RouteAutoConfiguration {
 

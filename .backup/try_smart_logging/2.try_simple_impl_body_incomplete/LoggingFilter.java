@@ -90,7 +90,7 @@ import reactor.core.publisher.Mono;
  * {@link LoggingFilter}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-02
+ * @since v1.0 2022-04-02
  */
 @Slf4j
 public class LoggingFilter extends AbstractGatewayFilterFactory<LoggingFilter.Config> implements Ordered {

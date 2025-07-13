@@ -30,7 +30,7 @@ import reactor.netty.http.client.HttpClient;
  * {@link ReactiveHttpClientBuilder}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-29
+ * @since v1.0 2022-04-29
  */
 public abstract class ReactiveHttpClientBuilder {
 

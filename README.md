@@ -164,7 +164,7 @@ filters:
       sign-algorithm: S256
       sign-hashing-mode: SimpleParamsBytesSortedHashing
       sign-hashing-include-params: ['*']
-      sign-hashing-exclude-params: ['response_type','__gw_log']
+      sign-hashing-exclude-params: ['response_type','__gwp_log']
       add-sign-auth-client-id-header: X-Sign-Auth-AppId
 ...
 ```

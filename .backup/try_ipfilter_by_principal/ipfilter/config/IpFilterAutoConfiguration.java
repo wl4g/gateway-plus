@@ -29,7 +29,7 @@ import com.wl4g.iam.gateway.metrics.GatewayPlusMetricsFacade;
  * {@link IpFilterAutoConfiguration}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-05-05
+ * @since v1.0 2022-05-05
  */
 public class IpFilterAutoConfiguration {
 

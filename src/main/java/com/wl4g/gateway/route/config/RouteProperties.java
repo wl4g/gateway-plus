@@ -19,7 +19,7 @@ public class RouteProperties {
     /**
      * Enabled to https to http forward filter. {@link Https2HttpGlobalFilter}
      */
-    private boolean forwaredHttpsToHttp = true;
+    private boolean forwardHttpsToHttp = true;
 
     private Long refreshDelayMs = 30_000L;
 

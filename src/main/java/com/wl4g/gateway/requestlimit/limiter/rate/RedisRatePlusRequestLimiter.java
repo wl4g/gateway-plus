@@ -49,7 +49,7 @@ import reactor.core.publisher.Mono;
  * {@link RedisRatePlusRequestLimiter}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-19
+ * @since v1.0 2022-04-19
  * @see {@link org.springframework.cloud.gateway.filter.ratelimit.RedisRateLimiter}
  * @see https://blog.csdn.net/songhaifengshuaige/article/details/93372437
  */

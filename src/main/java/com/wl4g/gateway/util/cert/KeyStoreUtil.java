@@ -39,7 +39,7 @@ import javax.net.ssl.TrustManagerFactory;
  * {@link KeyStoreUtil}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-10
+ * @since v1.0 2021-09-10
  */
 public abstract class KeyStoreUtil {
 

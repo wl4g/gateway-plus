@@ -27,7 +27,7 @@ import io.micrometer.prometheus.PrometheusMeterRegistry;
  * {@link GatewayPlusMetricsAutoConfiguration}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-16
+ * @since v1.0 2022-04-16
  */
 public class GatewayPlusMetricsAutoConfiguration {
 

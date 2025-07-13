@@ -13,17 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.wl4g.gateway.constant;
 
 import com.wl4g.infra.common.lang.EnvironmentUtil;
 
 /**
- * IAM for gateway constants.
- * 
+ * The constants of gateway.
+ *
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @version v1.0
- * @date 2018年11月13日
- * @since
+ * @version v1.0 2018/11/13
  */
 public abstract class GatewayPlusConstants extends EnvironmentUtil {
 

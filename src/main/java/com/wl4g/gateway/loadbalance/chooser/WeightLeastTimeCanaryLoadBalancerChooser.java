@@ -12,7 +12,7 @@ import com.wl4g.gateway.loadbalance.stats.LoadBalancerStats;
  * Grayscale load balancer rule for weight-based least response time.
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-03
+ * @since v1.0 2021-09-03
  * @see {@link com.netflix.loadbalancer.WeightedResponseTimeRule}
  */
 public class WeightLeastTimeCanaryLoadBalancerChooser extends LeastConnCanaryLoadBalancerChooser {

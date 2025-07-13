@@ -22,7 +22,7 @@ import org.junit.Test;
  * {@link SimpleTraceFilterTests}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-04-09
+ * @since v1.0 2022-04-09
  */
 public class SimpleTraceFilterTests {
 

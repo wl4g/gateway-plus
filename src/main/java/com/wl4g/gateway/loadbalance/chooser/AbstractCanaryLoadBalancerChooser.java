@@ -43,7 +43,7 @@ import lombok.Getter;
  * {@link com.netflix.loadbalancer.ZoneAwareLoadBalancer#chooseServer}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-03
+ * @since v1.0 2021-09-03
  */
 @Getter
 public abstract class AbstractCanaryLoadBalancerChooser implements CanaryLoadBalancerChooser {

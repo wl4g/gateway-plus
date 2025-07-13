@@ -117,7 +117,7 @@ import reactor.netty.tcp.SslProvider.Builder;
  * see:{@link io.netty.handler.ssl.Java8SslUtils#checkSniHostnameMatch()}￬
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-09
+ * @since v1.0 2021-09-09
  * @see {@link org.springframework.boot.web.embedded.netty.SslServerCustomizer}
  */
 @Slf4j

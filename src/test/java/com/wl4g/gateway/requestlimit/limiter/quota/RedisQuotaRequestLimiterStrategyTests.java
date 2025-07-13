@@ -24,7 +24,7 @@ import org.junit.jupiter.api.Test;
  * {@link RedisQuotaRequestLimiterStrategyTests}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2022-05-17
+ * @since v1.0 2022-05-17
  */
 public class RedisQuotaRequestLimiterStrategyTests {
 

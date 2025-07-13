@@ -1,21 +1,20 @@
 package com.wl4g.gateway.security.config;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.springframework.validation.annotation.Validated;
+
 import static com.wl4g.gateway.constant.GatewayPlusConstants.CACHE_PREFIX_AUTH_SIGN_EVENT_FAILURE;
 import static com.wl4g.gateway.constant.GatewayPlusConstants.CACHE_PREFIX_AUTH_SIGN_EVENT_SUCCESS;
 import static com.wl4g.gateway.constant.GatewayPlusConstants.CACHE_PREFIX_AUTH_SIGN_REPLAY_BLOOM;
 import static com.wl4g.gateway.constant.GatewayPlusConstants.CACHE_PREFIX_AUTH_SIGN_SECRET;
 import static com.wl4g.gateway.constant.GatewayPlusConstants.CACHE_SUFFIX_IAM_GATEWAY_EVENT_YYMMDD;
 
-import org.springframework.validation.annotation.Validated;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
 /**
- * {@link PlusSecurityProperties}
+ * {@link com.wl4g.gateway.security.config.SimpleSignAuthingProperties}
  *
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
  * @since v1.0 2020-07-23
@@ -23,43 +22,36 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class PlusSecurityProperties {
+public class SimpleSignAuthingProperties {
 
-    private SimpleSignAuthingProperties simpleSign = new SimpleSignAuthingProperties();
+    /**
+     * Load signing keys from that type of stored.
+     */
+    private SecretStore secretStore = SecretStore.ENV;
 
-    @Getter
-    @Setter
-    @ToString
-    public static class SimpleSignAuthingProperties {
+    /**
+     * Prefix when loading from signing keys stored.
+     */
+    private String secretStorePrefix = CACHE_PREFIX_AUTH_SIGN_SECRET;
 
-        /**
-         * Load signing keys from that type of stored.
-         */
-        private SecretStore secretStore = SecretStore.ENV;
+    /**
+     * Local cache expiration time for signing keys.
+     */
+    private long secretLocalCacheSeconds = 6L;
 
-        /**
-         * Prefix when loading from signing keys stored.
-         */
-        private String secretStorePrefix = CACHE_PREFIX_AUTH_SIGN_SECRET;
+    /**
+     * Ignore authentication in JVM debug mode, often used for rapid
+     * development and testing environments.
+     */
+    private boolean anonymousAuthingWithJvmDebug = false;
 
-        /**
-         * Local cache expiration time for signing keys.
-         */
-        private long secretLocalCacheSeconds = 6L;
+    /**
+     * Prefix when loading from bloom filter replay keys stored.
+     */
+    private String signReplayVerifyBloomLoadPrefix = CACHE_PREFIX_AUTH_SIGN_REPLAY_BLOOM;
 
-        /**
-         * Ignore authentication in JVM debug mode, often used for rapid
-         * development and testing environments.
-         */
-        private boolean anonymousAuthingWithJvmDebug = false;
+    private EventRecorderProperties eventRecorder = new EventRecorderProperties();
 
-        /**
-         * Prefix when loading from bloom filter replay keys stored.
-         */
-        private String signReplayVerifyBloomLoadPrefix = CACHE_PREFIX_AUTH_SIGN_REPLAY_BLOOM;
-
-        private EventRecorderProperties eventRecorder = new EventRecorderProperties();
-    }
 
     public enum SecretStore {
         ENV, REDIS

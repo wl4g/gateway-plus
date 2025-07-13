@@ -1,9 +1,10 @@
 package com.wl4g.gateway.security.ram;
 
+import com.wl4g.gateway.security.config.GatewayPlusSecurityProperties;
+import com.wl4g.gateway.security.ram.policy.IUserPolicyLoader;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SigningKeyResolverAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -11,7 +12,6 @@ import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
@@ -26,11 +26,13 @@ import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 // TODO: testing
-@Component
 @Slf4j
 @RequiredArgsConstructor
-public class IamAuthorizationFilter implements GlobalFilter, Ordered {
+public class RamAuthorizationFilter implements GlobalFilter, Ordered {
+    private final GatewayPlusSecurityProperties config;
+    private final IUserPolicyLoader policyLoader;
     private final PolicyEvaluator policyEvaluator;
+
     private final JwtParser jwtParser = Jwts.parserBuilder()
             // .setSigningKey("yourSigningKey") // TODO: using configuration & add login API to success response jwt with this singning key
             .requireIssuer("GWP") // Gateway-Plus
@@ -41,28 +43,32 @@ public class IamAuthorizationFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        String token = exchange.getRequest().getHeaders().getFirst("Authorization");
+        final var token = exchange.getRequest().getHeaders().getFirst("Authorization");
         if (isNull(token) || !token.startsWith("Bearer ")) {
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
         }
-        String jwt = token.substring(7);
+        log.debug("Received token: {}", token);
+        final var jwt = token.substring(7);
         Claims claims;
         try {
             claims = jwtParser.parseClaimsJws(jwt).getBody();
         } catch (Exception e) {
+            log.error("Error parsing JWT: {}", e.getMessage());
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+            if (!exchange.getResponse().isCommitted()) {
+                exchange.getResponse().getHeaders().add("errorMessage", e.getMessage());
+            }
             return exchange.getResponse().setComplete();
         }
 
         // Extract the UID,GID from JWT claims.
-        String uid = claims.get("uid", String.class);
-        String gid = claims.get("gid", String.class);
-
+        final var uid = claims.get("uid", String.class);
+        final var gid = claims.get("gid", String.class);
         log.info("Extracted the JWT uid: {}, gid: {}", uid, gid);
 
-        List<IamRequestContext.PolicyStatement> policies = loadCombinePolicy(uid, gid);
-        IamRequestContext context = buildContext(exchange.getRequest());
+        final var policies = policyLoader.loadCombinePolicy(uid, gid);
+        final var context = buildContext(exchange.getRequest());
 
         if (policyEvaluator.hasExplicitDeny(policies, context)) {
             exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
@@ -77,22 +83,9 @@ public class IamAuthorizationFilter implements GlobalFilter, Ordered {
         return chain.filter(exchange);
     }
 
-    /**
-     * Loads and combines policies for both user and user group
-     *
-     * @param uid User ID from request header
-     * @param gid User Group ID from request header
-     * @return Combined list of policy statements
-     */
-    private List<IamRequestContext.PolicyStatement> loadCombinePolicy(String uid, String gid) {
-        // TODO: Implement actual policy loading logic from storage (e.g. PG,Redis)
-        // This should combine both user policies and user group policies
-        return Collections.emptyList();
-    }
-
-    private IamRequestContext buildContext(ServerHttpRequest request) {
-        return IamRequestContext.builder()
-                .action(IamActionConverter.convert(
+    private RamRequestContext buildContext(ServerHttpRequest request) {
+        return RamRequestContext.builder()
+                .action(RamActionConverter.convert(
                         request.getMethodValue(),
                         request.getPath().value()))
                 .resourceUrn(buildResourceUrn(request))

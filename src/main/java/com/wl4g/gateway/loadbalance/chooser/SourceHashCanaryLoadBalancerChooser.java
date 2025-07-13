@@ -24,7 +24,7 @@ import com.wl4g.gateway.metrics.GatewayPlusMetricsFacade.MetricsName;
  * distribution of requests.
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-03
+ * @since v1.0 2021-09-03
  * @see {@link org.springframework.cloud.loadbalancer.core.RoundRobinLoadBalancer}
  */
 public class SourceHashCanaryLoadBalancerChooser extends AbstractCanaryLoadBalancerChooser {

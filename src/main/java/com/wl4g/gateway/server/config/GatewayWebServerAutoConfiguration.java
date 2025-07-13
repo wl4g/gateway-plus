@@ -29,7 +29,7 @@ import com.wl4g.gateway.server.SecureNettyReactiveWebServerFactory;
  * {@link GatewayWebServerAutoConfiguration}
  * 
  * @author James Wong &lt;jameswong1376@gmail.com&gt;
- * @since v1.0.0 2021-09-10
+ * @since v1.0 2021-09-10
  * @see {@link org.springframework.boot.autoconfigure.web.reactive.ReactiveWebServerFactoryConfiguration.EmbeddedNetty}
  */
 public class GatewayWebServerAutoConfiguration {
